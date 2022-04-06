@@ -18,15 +18,19 @@ function photographerFactory(data) {
     function getPagePhotographe() {
        const url_id = window.location.search;
        const url_slice = url_id.slice(1)
-       console.log(url_slice);
-       fetch(`http://localhost:5500/data/photographers.json`)
+       let array = [];
+      const fetchPhoto = fetch(`http://localhost:5500/data/photographers.json`)
        .then(res => res.json())
        .then(res => {
-           const result = res.photographers.map(el => {
-               console.log(el);
+           const result = res.photographers.find(el => {
+                if (el.id == url_slice) {
+                    return el
+                }
             })
-           
+            array.push(result)
+            return array
        })
+       console.log(array);
     }
 
     return { getUserCardDOM, getPagePhotographe }
