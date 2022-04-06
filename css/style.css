@@ -1,4 +1,13 @@
 @import url("photographer.css");
+#main-page-photographer .photograph-header img, .photographer_section article a img {
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  box-shadow: 3px 4px 5px #cfc7c7;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -48,14 +57,6 @@ h1 {
   font-size: 36px;
   margin-bottom: 0;
 }
-.photographer_section article a img {
-  height: 200px;
-  width: 200px;
-  border-radius: 100px;
-  box-shadow: 3px 4px 5px #cfc7c7;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
 .photographer_section article .p-country {
   color: #901C1C;
   margin: 0;
@@ -69,4 +70,20 @@ h1 {
   margin: 0;
   font-size: 15px;
   color: gray;
+}
+
+#main-page-photographer .photograph-header {
+  display: flex;
+  justify-content: space-between;
+}
+#main-page-photographer .photograph-header .h1-page-photographer {
+  color: #D3573C;
+  font-size: 50px;
+  margin-bottom: 0;
+}
+#main-page-photographer .photograph-header .p-country-city {
+  color: #D3573C;
+}
+#main-page-photographer .photograph-header .contact_button {
+  margin-top: 50px;
 }/*# sourceMappingURL=style.css.map */

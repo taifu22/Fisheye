@@ -15,6 +15,8 @@ class AppPagePhotographer {
        
        const location = photographerFactory(photo)
        const locationPhoto = location.getPagePhotographe()
+       
+       return locationPhoto
     }
 
 }

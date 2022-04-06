@@ -19,7 +19,8 @@ function photographerFactory(data) {
        const url_id = window.location.search;
        const url_slice = url_id.slice(1)
        let array = [];
-                 await fetch(`http://localhost:5500/data/photographers.json`)
+                 
+       await fetch(`http://localhost:5500/data/photographers.json`)
                     .then(res => res.json())
                     .then(res => {
                         const result = res.photographers.find(el => {
@@ -28,9 +29,17 @@ function photographerFactory(data) {
                              }
                          })     
                          array.push(result)
-                         console.log(array);
                     })       
-       console.log(array);
+       
+       const picturePhotographe = `assets/photographers/${array[0].portrait}`;             
+       const articlePhotographe = document.querySelector('.photograph-header')
+       articlePhotographe.innerHTML = `<div>
+       <h1 class="h1-page-photographer">${array[0].name}</h1>
+       <p class="p-country-city">${array[0].city} ${array[0].country}</p>
+       <p>${array[0].tagline}</p>
+       </div>
+       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+       <img src="${picturePhotographe}" alt="${array[0].name}">`
     }
 
     return { getUserCardDOM, getPagePhotographe }
