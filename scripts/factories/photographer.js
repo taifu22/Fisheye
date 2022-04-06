@@ -15,21 +15,21 @@ function photographerFactory(data) {
         return (article);
     }
     
-    function getPagePhotographe() {
+    async function getPagePhotographe() {
        const url_id = window.location.search;
        const url_slice = url_id.slice(1)
        let array = [];
-      const fetchPhoto = fetch(`http://localhost:5500/data/photographers.json`)
-       .then(res => res.json())
-       .then(res => {
-           const result = res.photographers.find(el => {
-                if (el.id == url_slice) {
-                    return el
-                }
-            })
-            array.push(result)
-            return array
-       })
+                 await fetch(`http://localhost:5500/data/photographers.json`)
+                    .then(res => res.json())
+                    .then(res => {
+                        const result = res.photographers.find(el => {
+                             if (el.id == url_slice) {
+                                 return el
+                             }
+                         })     
+                         array.push(result)
+                         console.log(array);
+                    })       
        console.log(array);
     }
 
