@@ -1,0 +1,20 @@
+%img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    box-shadow: 3px 4px 5px #cfc7c7;
+    object-fit: cover;
+}
+
+%btn-contact {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}

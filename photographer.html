@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -14,19 +14,25 @@
       </a>
     </header>
     <main id="main-page-photographer">
-      <div class="photograph-header"></div>
+      <div class="photographer-header"></div>
       <div class="photos-medias"></div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header> 
-          <h2>Contactez-moi</h2>
+          <h2 class="h2-modal-contact">Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
 						<label>Prénom</label>
-						<input />
+						<input type="text"/>
+            <label>Nom</label>
+						<input type="text"/>
+            <label>Email</label>
+						<input type="email"/>
+            <label>Votre message</label>
+						<input type="textarea">
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

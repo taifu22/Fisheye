@@ -39,7 +39,7 @@ function photographerFactory(data, data1) {
                     })       
        
        const picturePhotographe = `assets/photographers/${array[0].portrait}`;             
-       const articlePhotographe = document.querySelector('.photograph-header')
+       const articlePhotographe = document.querySelector('.photographer-header')
        articlePhotographe.innerHTML = `<div>
        <h1 class="h1-page-photographer">${array[0].name}</h1>
        <p class="p-country-city">${array[0].city} ${array[0].country}</p>
@@ -47,6 +47,9 @@ function photographerFactory(data, data1) {
        </div>
        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
        <img src="${picturePhotographe}" alt="${array[0].name}">`
+
+       const h2Contact = document.querySelector('.h2-modal-contact');
+       h2Contact.innerHTML = `Contactez-moi ${array[0].name}`
        
 //Affichage des photos et videos dans la page photographe 
 
