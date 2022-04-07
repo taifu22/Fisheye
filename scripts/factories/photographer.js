@@ -48,28 +48,41 @@ function photographerFactory(data, data1) {
        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
        <img src="${picturePhotographe}" alt="${array[0].name}">`
        
-//Affichage des photos media dans la page photographe 
+//Affichage des photos et videos dans la page photographe 
 
        const PhotosMedias = document.querySelector('.photos-medias');
        let arrayImages = [];
-       const resultMedias = data1.map(element => {
-        if (element.photographerId == url_slice) {
-            console.log(element.image);
+       const resultMediasPhotos = data1.map(element => {
+        if (element.photographerId == url_slice && element.image) {
             const images = element.image 
-            arrayImages.push(images)
-            return images    
+            arrayImages.push(images) 
         }      
        })
-       //var extensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+       let arrayVideos = []
+       const resultMediasVideos = data1.map(element => {
+        if (element.photographerId == url_slice && element.video) {
+            const videos = element.video
+            arrayVideos.push(videos)   
+        }      
+       })
+      
        arrayImages.map(el => {
-        const photo = document.createElement('img')
-        photo.setAttribute('src',`/assets/images/${array[0].name}/${el}`)
-        photo.setAttribute('alt', `${title}`)
-        photo.setAttribute('class', 'images-photographers')
-        PhotosMedias.appendChild(photo)
-    })
-       return resultMedias
-    }
+            const photo = document.createElement('img')
+            photo.setAttribute('src',`/assets/images/${array[0].name}/${el}`)
+            photo.setAttribute('alt', `${title}`)
+            photo.setAttribute('class', 'images-photographers')
+            PhotosMedias.appendChild(photo)   
+       })
+
+       arrayVideos.map(el => {
+            video = document.createElement('video')
+            video.innerHTML = `<source src="/assets/images/${array[0].name}/${el}" type="video/mp4">`
+            video.setAttribute('class', 'images-photographers')
+            video.setAttribute('controls', '')
+            PhotosMedias.appendChild(video)
+       })
+  }
 
     return { getUserCardDOM, getPagePhotographe }
 }
