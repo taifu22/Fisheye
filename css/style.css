@@ -86,4 +86,16 @@ h1 {
 }
 #main-page-photographer .photograph-header .contact_button {
   margin-top: 50px;
+}
+#main-page-photographer .photos-medias {
+  margin-left: 20px;
+}
+#main-page-photographer .photos-medias .images-photographers {
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-bottom: 80px;
+  height: 400px;
+  width: 27%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=style.css.map */

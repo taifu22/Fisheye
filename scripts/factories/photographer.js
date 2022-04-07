@@ -1,10 +1,13 @@
-function photographerFactory(data) {
+//fonction factory pour l'affichage de la page d'accueil et de la page photographe
+
+function photographerFactory(data, data1) {
     const { name, portrait, country, city, tagline, price, id } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
+//Affichage des cards dans la page d'accueil
 
+    function getUserCardDOM() {
         const article = document.createElement('article')
         article.innerHTML = `<a href="photographer.html?${id}">
         <img src="${picture}" alt="${name}"><h2>${name}</h2>
@@ -15,7 +18,11 @@ function photographerFactory(data) {
         return (article);
     }
     
+//affichage du header de la page photographe 
+
     async function getPagePhotographe() {
+       const { id1, photographerId, title, image, likes, date, price1} = data1
+
        const url_id = window.location.search;
        const url_slice = url_id.slice(1)
        let array = [];
@@ -40,6 +47,28 @@ function photographerFactory(data) {
        </div>
        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
        <img src="${picturePhotographe}" alt="${array[0].name}">`
+       
+//Affichage des photos media dans la page photographe 
+
+       const PhotosMedias = document.querySelector('.photos-medias');
+       let arrayImages = [];
+       const resultMedias = data1.map(element => {
+        if (element.photographerId == url_slice) {
+            console.log(element.image);
+            const images = element.image 
+            arrayImages.push(images)
+            return images    
+        }      
+       })
+       //var extensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+       arrayImages.map(el => {
+        const photo = document.createElement('img')
+        photo.setAttribute('src',`/assets/images/${array[0].name}/${el}`)
+        photo.setAttribute('alt', `${title}`)
+        photo.setAttribute('class', 'images-photographers')
+        PhotosMedias.appendChild(photo)
+    })
+       return resultMedias
     }
 
     return { getUserCardDOM, getPagePhotographe }
@@ -53,26 +82,6 @@ function photographerFactory(data) {
 
 
 
-// const article = document.createElement( 'article' );
-        // const img = document.createElement( 'img' );
-        // img.setAttribute("src", picture)
-        // img.setAttribute("alt", name)
-        // const h2 = document.createElement( 'h2' );
-        // const ancre = document.createElement('a');
-        // ancre.setAttribute('id', id)
-        // ancre.setAttribute('href', 'photographer.html?'+id)
-        // ancre.append(img, h2)
-        // const countryP = document.createElement('p')
-        // const taglineP = document.createElement('p');
-        // const priceP = document.createElement('p')
-        // countryP.textContent = city + ', ' + country;
-        // countryP.className = 'p-country';
-        // taglineP.textContent = tagline
-        // taglineP.className = 'p-tagline';
-        // priceP.textContent = price + 'Є/jour';
-        // priceP.className = 'p-price';
-        // h2.textContent = name;
-        // article.append(ancre, countryP, taglineP, priceP);
 
 
 
