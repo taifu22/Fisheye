@@ -98,25 +98,22 @@ console.log(arrayImages[0]);
       const lightboxShow = document.querySelector('.lightbox')
       lightboxShow.style.display = 'block'
       const imagesLightbox = document.createElement('img');
-      imagesLightbox.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[0]}`)
+      imagesLightbox.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[0]}`);
+      imagesLightbox.setAttribute('class', 'image-lightbox')
       lightboxShow.appendChild(imagesLightbox)
     }
-    lightbox.forEach( btn => btn.addEventListener('click', openLightbox))
+    lightbox.forEach(btn => btn.addEventListener('click', openLightbox));
 
     //fermer la lightbox
     const closelightbox = document.querySelector('.fa-xmark');
     closelightbox.addEventListener('click', () => {
       const lightboxShow = document.querySelector('.lightbox');
+      const imgDelete = document.querySelector('.image-lightbox');
+      imgDelete.remove();
       lightboxShow.style.display = 'none';
+
     })
-       
-    //function openLightbox() {
-        //const lightbox = document.querySelector('.lightbox')
-       // lightbox.style.display = 'block'
-      //const imagesLightbox = document.createElement('img');
-      //imagesLightbox.setAttribute('src', `/assets/images/${array2[0].name}/${arrayImages2[0]}`)
-    //} 
-    
+           
   }
 
   return { getUserCardDOM, getPagePhotographe };
