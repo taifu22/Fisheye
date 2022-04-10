@@ -57,7 +57,7 @@
     .modal {
         border-radius: 5px;
         background-color: #DB8876;
-        width: 40%;
+        width: 35%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -74,7 +74,7 @@
             h2 {
                 font-size: 64px;
                 font-weight: normal;
-                text-align: center;
+                //text-align: center;
                 
             }
         }
@@ -99,11 +99,63 @@
                     height: 68px;
                     border: none;
                     border-radius: 5px;
+                    font-size: 35px;
                 }
+                .error {
+                    display: none;
+                    color: red;
+                    font-size: 20px;
+                    text-align: start;
+                    line-height: normal;
+                    font-weight: bold;
+                  }
             }
             .contact_button {
                 @extend %btn-contact
             }
         }
+    }
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(43, 45, 58, 0.7);
+    img {
+        height: 900px;
+        width: 60%;
+        object-fit: cover;
+        margin-top: 20px;
+        margin-left: 20%;
+    }
+    .fa-xmark {
+        margin-top: 20px;
+        margin-left: 85%;
+        font-size: 60px;
+        color: white;
+        position: fixed;
+        cursor: pointer;
+    }
+    .fa-chevron-left {
+        margin-top: 400px;
+        margin-left: 10%;
+        font-size: 60px;
+        color: white;
+        position: fixed;
+        cursor: pointer;
+    }
+    .fa-chevron-right {
+        margin-top: 400px;
+        margin-left: 85%;
+        font-size: 60px;
+        color: white;
+        position: fixed;
+        cursor: pointer;
     }
 }

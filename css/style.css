@@ -129,7 +129,7 @@ h1 {
 #contact_modal .modal {
   border-radius: 5px;
   background-color: #DB8876;
-  width: 40%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,7 +148,6 @@ h1 {
 #contact_modal .modal header h2 {
   font-size: 64px;
   font-weight: normal;
-  text-align: center;
 }
 #contact_modal .modal form {
   margin-top: 50px;
@@ -173,4 +172,56 @@ h1 {
   height: 68px;
   border: none;
   border-radius: 5px;
+  font-size: 35px;
+}
+#contact_modal .modal form div .error {
+  display: none;
+  color: red;
+  font-size: 20px;
+  text-align: start;
+  line-height: normal;
+  font-weight: bold;
+}
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(43, 45, 58, 0.7);
+}
+.lightbox img {
+  height: 900px;
+  width: 60%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-top: 20px;
+  margin-left: 20%;
+}
+.lightbox .fa-xmark {
+  margin-top: 20px;
+  margin-left: 85%;
+  font-size: 60px;
+  color: white;
+  position: fixed;
+  cursor: pointer;
+}
+.lightbox .fa-chevron-left {
+  margin-top: 400px;
+  margin-left: 10%;
+  font-size: 60px;
+  color: white;
+  position: fixed;
+  cursor: pointer;
+}
+.lightbox .fa-chevron-right {
+  margin-top: 400px;
+  margin-left: 85%;
+  font-size: 60px;
+  color: white;
+  position: fixed;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
