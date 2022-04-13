@@ -80,7 +80,7 @@ function checkPrenom() {
   
     if (isNomValide) {
       errorTextArea.classList.remove('error');
-      errorTextArea.style.display = 'none';
+      errorTextArea.style.display = 'none'; 
     } else {
       errorTextArea.classList.add('error');
       errorTextArea.style.display = 'block';

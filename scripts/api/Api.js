@@ -3,7 +3,7 @@ class PhotographerApi {
         this._url = url
     }
 
-    async getPhotographers() {
+    async getPhotographers() { 
         return await fetch(this._url)
                      .then(res => res.json())
                      .then(res => res.photographers)

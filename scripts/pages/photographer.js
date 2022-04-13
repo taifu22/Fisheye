@@ -1,7 +1,3 @@
-//Mettre le code JavaScript lié à la page photographer.html 
-
-
-
 class AppPagePhotographer {
     constructor() {
         this.apiMedia = new MediaApi('/data/photographers.json');
@@ -18,9 +14,8 @@ class AppPagePhotographer {
               
        return locationPhoto
     }
-
+ 
 }
 
 const app2 = new AppPagePhotographer();
 app2.getApi();
-
