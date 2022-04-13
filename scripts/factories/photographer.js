@@ -71,19 +71,26 @@ function photographerFactory(data, data1) {
         arrayVideos.push(videos);
       }
     });
-    
+    let images = [];
+    for (var i = 0; i < arrayImages.length; i++) {
+      
+      let image = `<img src="/assets/images/${array[0].name}/${arrayImages[i]}" 
+                         alt="${arrayImages[i]}}"
+                         class="lightbox-activate image-lightbox images-photographers">`
+      images.push(image);
+    }
+
     //on map notre array avec les photo et on créé pour chaque élément une balise img, pour l'afficher dans le navigateur
     const arrayLightbox = [];
     arrayImages.map((el) => {
       const photo = document.createElement("img");
       photo.setAttribute('src', `/assets/images/${array[0].name}/${el}` )
-      photo.setAttribute('class', ' image-lightbox lightbox-activate images-photographers')
+      photo.setAttribute('class', 'lightbox-activate images-photographers')
       photo.setAttribute('alt', `${el}`)
       photo.style.cursor = 'pointer';
       PhotosMedias.appendChild(photo);
       arrayLightbox.push(photo)
     });
-const arrayLightboxClone = arrayLightbox.concat();
 
     //on map notre array avec les videos et on créé pour chaque élément une balise video, pour l'afficher dans le navigateur
     arrayVideos.map((el) => {
@@ -97,106 +104,38 @@ const arrayLightboxClone = arrayLightbox.concat();
     });
     
     //function pour afficher la lightbox
+    // let photo1 = null
+    // const lightboxShow = document.querySelector('.lightbox')
+    // function openLightbox(e) {
+    //   photo1 = e.currentTarget.cloneNode(true)
+    //   lightboxShow.style.display = 'block'
+    //   photo1.setAttribute('class', 'image-lightbox')
+    //   lightboxShow.appendChild(photo1)
+    // }
+    
+    //function pour afficher la lightbox
     let photo1 = null
-    let photo1Clone = null
+    let photo1Index = null
     const lightboxShow = document.querySelector('.lightbox')
     function openLightbox(e) {
       photo1 = e.currentTarget.cloneNode(true)
       lightboxShow.style.display = 'block'
-      photo1.setAttribute('class', 'image-lightbox lightbox-activate images-photographers')
-      lightboxShow.appendChild(photo1)
-      photo1Clone = photo1.cloneNode(true)
+      photo1.setAttribute('class', 'image-lightbox')
+      lightboxShow.append(photo1)
+      photo1Index = arrayImages.indexOf(photo1.alt)
     }
     
     //événement pour afficher la lightbox
     const lightbox = document.querySelectorAll('.lightbox-activate')
     lightbox.forEach(btn => btn.addEventListener('click', openLightbox));
-
+let photo = null;
     //evenement pour changer d'image dans la lightbox coté Right
     const lightboxRight = document.querySelector('.fa-chevron-right');
-    let newImage,newImage2,newImage3,newImage4,newImage5,newImage6,newImage7,newImage8, newImage9, newImage10 = null;
      lightboxRight.addEventListener('click', () => {
-          if ((arrayImages.includes(photo1.alt) && document.body.contains(photo1)) ) {     
-            lightboxShow.removeChild(photo1) 
-            newImage = document.createElement('img');
-            newImage.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(photo1.alt)+1]}`);
-            newImage.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage.setAttribute('alt', `${arrayImages[arrayImages.indexOf(photo1.alt)+1]}`)
-            lightboxShow.appendChild(newImage);
-            console.log(newImage);
-          } else if (arrayImages.includes(newImage.alt) && document.body.contains(newImage)) {
-            lightboxShow.removeChild(newImage) 
-            newImage2 = document.createElement('img');
-            newImage2.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(newImage.alt)+1]}`);
-            newImage2.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage2.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage.alt)+1]}`)
-            lightboxShow.appendChild(newImage2);
-            console.log(newImage2);
-          } else if (arrayImages.includes(newImage2.alt) && document.body.contains(newImage2)) {
-            lightboxShow.removeChild(newImage2) 
-            newImage3 = document.createElement('img');
-            newImage3.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(newImage2.alt)+1]}`);
-            newImage3.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage3.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage2.alt)+1]}`)
-            lightboxShow.appendChild(newImage3);
-            console.log(newImage3);
-          } else if (arrayImages.includes(newImage3.alt) && document.body.contains(newImage3)) {
-            lightboxShow.removeChild(newImage3) 
-            newImage4 = document.createElement('img');
-            newImage4.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(newImage3.alt)+1]}`);
-            newImage4.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage4.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage3.alt)+1]}`)
-            lightboxShow.appendChild(newImage4);
-            console.log(newImage4);
-          } else if (arrayImages.includes(newImage4.alt) && document.body.contains(newImage4)) {
-            lightboxShow.removeChild(newImage4) 
-            newImage5 = document.createElement('img');
-            newImage5.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(newImage4.alt)+1]}`);
-            newImage5.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage5.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage4.alt)+1]}`)
-            lightboxShow.appendChild(newImage5);
-            console.log(newImage5);
-          } else if (arrayImages.includes(newImage5.alt) && document.body.contains(newImage5)) {
-            lightboxShow.removeChild(newImage5) 
-            newImage6 = document.createElement('img');
-            newImage6.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(newImage5.alt)+1]}`);
-            newImage6.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage6.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage5.alt)+1]}`)
-            lightboxShow.appendChild(newImage6);
-            console.log(newImage6);
-          } else if (arrayImages.includes(newImage6.alt) && document.body.contains(newImage6)) {
-            lightboxShow.removeChild(newImage6) 
-            newImage7 = document.createElement('img');
-            newImage7.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(newImage6.alt)+1]}`);
-            newImage7.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage7.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage6.alt)+1]}`)
-            lightboxShow.appendChild(newImage7);
-            console.log(newImage7);
-          }  else if (arrayImages.includes(newImage7.alt) && document.body.contains(newImage7)) {
-            lightboxShow.removeChild(newImage7) 
-            newImage8 = document.createElement('img');
-            newImage8.setAttribute('src', `/assets/images/${array[0].name}/${arrayImages[arrayImages.indexOf(newImage7.alt)+1]}`);
-            newImage8.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage8.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage7.alt)+1]}`)
-            lightboxShow.appendChild(newImage8);
-            console.log(newImage8);
-          }  else if (arrayImages.includes(newImage8.alt) && document.body.contains(newImage8)) {
-            console.log(photo1);
-            lightboxShow.removeChild(newImage8) 
-            newImage9 = document.createElement('img');
-            newImage9.setAttribute('src', `/assets/images/${arrayImages[arrayImages.indexOf(newImage8.alt)+1]}`);
-            newImage9.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage9.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage8.alt)+1]}`)
-            lightboxShow.appendChild(newImage9);
-          }  else if (arrayImages.includes(newImage9.alt) && document.body.contains(newImage9)) {
-            console.log(photo1);
-            lightboxShow.removeChild(newImage9) 
-            newImage10 = document.createElement('img');
-            newImage10.setAttribute('src', `/assets/images/${arrayImages[arrayImages.indexOf(newImage9.alt)+1]}`);
-            newImage10.setAttribute('class', 'lightbox-activate image-lightbox images-photographers');
-            newImage10.setAttribute('alt', `${arrayImages[arrayImages.indexOf(newImage9.alt)+1]}`)
-            lightboxShow.appendChild(newImage10);
-          }  
+      photo = document.querySelector('.image-lightbox');
+       photo.src = `/assets/images/${array[0].name}/${arrayImages[photo1Index+1]}`
+       photo.alt = `${arrayImages[photo1Index+1]}`
+        console.log(photo);
      })
 
     //fermer la lightbox
