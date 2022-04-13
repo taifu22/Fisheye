@@ -5,7 +5,7 @@ function photographerFactory(data, data1) {
 
   const picture = `assets/photographers/${portrait}`;
 
-  //Affichage des cards dans la page d'accuei
+//Affichage des cards dans la page d'accuei
   function getUserCardDOM() {
     const article = document.createElement("article");
     article.innerHTML = `<a href="photographer.html?${id}">
@@ -17,7 +17,7 @@ function photographerFactory(data, data1) {
     return article;
   }
   
-  //affichage du header de la page photographe
+//affichage du header de la page photographe
   async function getPagePhotographe() {
     const { id1, photographerId, title, image, likes, date, price1 } = data1;
 
@@ -47,14 +47,14 @@ function photographerFactory(data, data1) {
     <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     <img src="${picturePhotographe}" alt="${array[0].name}">`;
 
-    //Affichage du nom dans la modale de contacte
+//Affichage du nom dans la modale de contacte
     const h2Contact = document.querySelector(".h2-modal-contact");
     h2Contact.innerHTML = `Contactez-moi<br>${array[0].name}`;
 
-    //Affichage des photos et videos dans la page photographe
+//Affichage des photos et videos dans la page photographe
     const PhotosMedias = document.querySelector(".photos-medias");
 
-    //utilisation du tableau pour stocker les images du photographe lié à l'url-slice
+//utilisation du tableau pour stocker les images du photographe lié à l'url-slice
     let arrayImages = [];
     data1.map((element) => {
       if (element.photographerId == url_slice && element.image) {
@@ -63,7 +63,7 @@ function photographerFactory(data, data1) {
       }
     });       
     
-    //utilisation du tableau pour stocker les videos du photographe lié à l'url-slice
+//utilisation du tableau pour stocker les videos du photographe lié à l'url-slice
     var arrayVideos = [];
     data1.map((element) => {
       if (element.photographerId == url_slice && element.video) {
@@ -80,7 +80,7 @@ function photographerFactory(data, data1) {
       images.push(image);
     }
 
-    //on map notre array avec les photo et on créé pour chaque élément une balise img, pour l'afficher dans le navigateur
+//on map notre array avec les photo et on créé pour chaque élément une balise img, pour l'afficher dans le navigateur
     const arrayLightbox = [];
     arrayImages.map((el) => {
       const photo = document.createElement("img");
@@ -92,7 +92,7 @@ function photographerFactory(data, data1) {
       arrayLightbox.push(photo)
     });
 
-    //on map notre array avec les videos et on créé pour chaque élément une balise video, pour l'afficher dans le navigateur
+//on map notre array avec les videos et on créé pour chaque élément une balise video, pour l'afficher dans le navigateur
     arrayVideos.map((el) => {
       const video = document.createElement("a");
       video.innerHTML = `<video class="images-photographers" controls> 
@@ -103,17 +103,7 @@ function photographerFactory(data, data1) {
       PhotosMedias.appendChild(video);
     });
     
-    //function pour afficher la lightbox
-    // let photo1 = null
-    // const lightboxShow = document.querySelector('.lightbox')
-    // function openLightbox(e) {
-    //   photo1 = e.currentTarget.cloneNode(true)
-    //   lightboxShow.style.display = 'block'
-    //   photo1.setAttribute('class', 'image-lightbox')
-    //   lightboxShow.appendChild(photo1)
-    // }
-    
-    //function pour afficher la lightbox
+//function pour afficher la lightbox
     let photo1 = null
     let photo1Index = null
     const lightboxShow = document.querySelector('.lightbox')
@@ -125,20 +115,43 @@ function photographerFactory(data, data1) {
       photo1Index = arrayImages.indexOf(photo1.alt)
     }
     
-    //événement pour afficher la lightbox
+//événement pour afficher la lightbox
     const lightbox = document.querySelectorAll('.lightbox-activate')
     lightbox.forEach(btn => btn.addEventListener('click', openLightbox));
-let photo = null;
-    //evenement pour changer d'image dans la lightbox coté Right
-    const lightboxRight = document.querySelector('.fa-chevron-right');
-     lightboxRight.addEventListener('click', () => {
+
+//function pour la création des medias dans la lightbox pour passer à la photo suivante ou precedente
+    function createPhotoLightbox() {
       photo = document.querySelector('.image-lightbox');
-       photo.src = `/assets/images/${array[0].name}/${arrayImages[photo1Index+1]}`
-       photo.alt = `${arrayImages[photo1Index+1]}`
-        console.log(photo);
+          photo.src = `/assets/images/${array[0].name}/${arrayImages[photo1Index]}`
+          photo.alt = `${arrayImages[photo1Index]}`
+    }
+//evenement pour changer d'image dans la lightbox coté Right
+    const lightboxRight = document.querySelector('.fa-chevron-right');
+    let photo = null;
+     lightboxRight.addEventListener('click', () => {
+        if (photo1Index == arrayImages.length) {
+          photo1Index=0
+          createPhotoLightbox()
+        } else {
+          photo1Index+=1
+          createPhotoLightbox()
+        }
+     })
+     
+//evenement pour changer d'image dans la lightbox coté Right
+    const lightboxLeft = document.querySelector('.fa-chevron-left');
+     lightboxLeft.addEventListener('click', () => {
+      if (photo1Index == 0) {
+        photo1Index=arrayImages.length
+        createPhotoLightbox();
+      } else {
+        photo1Index-=1
+        createPhotoLightbox()
+      }
      })
 
-    //fermer la lightbox
+
+//evenement pour fermer la lightbox
     const closelightbox = document.querySelector('.fa-xmark');
     closelightbox.addEventListener('click', () => {
       const lightboxShow = document.querySelector('.lightbox');
