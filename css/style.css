@@ -191,37 +191,50 @@ h1 {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(43, 45, 58, 0.7);
+  background-color: rgba(226, 226, 231, 0.9);
 }
 .lightbox img {
-  height: 700px;
-  width: 500px;
+  height: 100%;
+  width: 1100px;
   -o-object-fit: cover;
      object-fit: cover;
-  margin-top: 20px;
-  margin-left: 30%;
+  margin-top: 100px;
+  margin-left: 20%;
+}
+.lightbox video {
+  height: 700px;
+  width: 1100px;
+  margin-top: 100px;
+  margin-left: 22%;
 }
 .lightbox .fa-xmark {
   margin-top: 20px;
-  margin-left: 85%;
-  font-size: 60px;
-  color: white;
+  margin-left: 90%;
+  font-size: 100px;
+  color: #D3573C;
   position: fixed;
   cursor: pointer;
 }
 .lightbox .fa-chevron-left {
   margin-top: 400px;
   margin-left: 10%;
-  font-size: 60px;
-  color: white;
+  font-size: 100px;
+  color: #D3573C;
   position: fixed;
   cursor: pointer;
 }
 .lightbox .fa-chevron-right {
   margin-top: 400px;
-  margin-left: 85%;
-  font-size: 60px;
-  color: white;
+  margin-left: 90%;
+  font-size: 100px;
+  color: #D3573C;
   position: fixed;
   cursor: pointer;
+}
+.lightbox h2 {
+  position: absolute;
+  color: #D3573C;
+  top: 5px;
+  left: 700px;
+  font-size: 40px;
 }/*# sourceMappingURL=style.css.map */

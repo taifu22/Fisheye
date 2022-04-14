@@ -71,14 +71,15 @@ function photographerFactory(data, data1) {
         arrayVideos.push(videos);
       }
     });
-    let images = [];
-    for (var i = 0; i < arrayImages.length; i++) {
-      
-      let image = `<img src="/assets/images/${array[0].name}/${arrayImages[i]}" 
-                         alt="${arrayImages[i]}}"
-                         class="lightbox-activate image-lightbox images-photographers">`
-      images.push(image);
-    }
+
+//utilisation du tableau pour stocker les titles des medias du photographe lié à l'url-slice
+var arrayTitles = [];
+data1.map((element) => {
+  if (element.photographerId == url_slice && element.title) {
+    const title = element.title;
+    arrayTitles.push(title);
+  }
+});   
 
 //on map notre array avec les photo et on créé pour chaque élément une balise img, pour l'afficher dans le navigateur
     const arrayLightbox = [];
@@ -102,17 +103,23 @@ function photographerFactory(data, data1) {
       video.style.cursor = 'pointer';
       PhotosMedias.appendChild(video);
     });
-    
+
+//fusion du tableau des photo avec celui des videos pour l'affichage en lightbox
+   let arrayMedias = arrayImages.concat(arrayVideos)  
+
 //function pour afficher la lightbox
     let photo1 = null
     let photo1Index = null
     const lightboxShow = document.querySelector('.lightbox')
+    let h2 = document.createElement('h2')
     function openLightbox(e) {
       photo1 = e.currentTarget.cloneNode(true)
       lightboxShow.style.display = 'block'
       photo1.setAttribute('class', 'image-lightbox')
       lightboxShow.append(photo1)
-      photo1Index = arrayImages.indexOf(photo1.alt)
+      photo1Index = arrayMedias.indexOf(photo1.alt)
+      h2.textContent = arrayTitles[photo1Index]
+      lightboxShow.append(h2)
     }
     
 //événement pour afficher la lightbox
@@ -120,16 +127,36 @@ function photographerFactory(data, data1) {
     lightbox.forEach(btn => btn.addEventListener('click', openLightbox));
 
 //function pour la création des medias dans la lightbox pour passer à la photo suivante ou precedente
+  let video1 = document.createElement('video');
+  let source = document.createElement('source');
+  
     function createPhotoLightbox() {
-      photo = document.querySelector('.image-lightbox');
-          photo.src = `/assets/images/${array[0].name}/${arrayImages[photo1Index]}`
-          photo.alt = `${arrayImages[photo1Index]}`
+      if (arrayMedias[photo1Index].includes('.mp4')) {
+        console.log(arrayMedias[photo1Index]);
+        photo1.style.display = 'none';
+        video1.setAttribute('controls', '')
+        video1.setAttribute('class', 'image-lightbox')
+        source.setAttribute('src' , `/assets/images/${array[0].name}/${arrayMedias[photo1Index]}`)
+        source.setAttribute('type' , 'video/mp4')
+        video1.appendChild(source);
+        lightboxShow.appendChild(video1)
+        h2.textContent = arrayTitles[photo1Index]
+        console.log(video1);
+      } else if (arrayMedias[photo1Index].includes('.jpg')){
+          console.log(arrayMedias[photo1Index]);
+          video1.remove(); 
+          photo1.style.display = 'block';
+          photo1 = document.querySelector('.image-lightbox');
+          photo1.src = `/assets/images/${array[0].name}/${arrayMedias[photo1Index]}`
+          h2.textContent = arrayTitles[photo1Index]
+          photo1.alt = `${arrayMedias[photo1Index]}` 
+      }
     }
+    
 //evenement pour changer d'image dans la lightbox coté Right
     const lightboxRight = document.querySelector('.fa-chevron-right');
-    let photo = null;
      lightboxRight.addEventListener('click', () => {
-        if (photo1Index == arrayImages.length) {
+        if (photo1Index === (arrayMedias.length-1)) {
           photo1Index=0
           createPhotoLightbox()
         } else {
@@ -141,8 +168,8 @@ function photographerFactory(data, data1) {
 //evenement pour changer d'image dans la lightbox coté Right
     const lightboxLeft = document.querySelector('.fa-chevron-left');
      lightboxLeft.addEventListener('click', () => {
-      if (photo1Index == 0) {
-        photo1Index=arrayImages.length
+      if (photo1Index === 0) {
+        photo1Index = (arrayMedias.length-1)
         createPhotoLightbox();
       } else {
         photo1Index-=1
