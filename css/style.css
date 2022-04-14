@@ -104,15 +104,39 @@ h1 {
 }
 #main-page-photographer .photos-medias {
   margin-left: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
-#main-page-photographer .photos-medias .images-photographers {
+#main-page-photographer .photos-medias .card-photo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
   margin-right: 40px;
   margin-left: 40px;
-  margin-bottom: 80px;
+}
+#main-page-photographer .photos-medias .card-photo .images-photographers {
   height: 400px;
-  width: 27%;
+  width: 400px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+#main-page-photographer .photos-medias .card-photo p {
+  font-size: 20px;
+  color: #D3573C;
+  margin-right: 0;
+  margin-left: 0;
+}
+#main-page-photographer .photos-medias .card-photo .p-heart {
+  display: flex;
+  justify-content: space-between;
+}
+#main-page-photographer .photos-medias .card-photo .p-heart .heart {
+  display: flex;
+}
+#main-page-photographer .photos-medias .card-photo .p-heart .heart i {
+  margin-top: 23px;
+  margin-left: 10px;
+  color: red;
 }
 
 #contact_modal {
