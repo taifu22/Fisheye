@@ -272,8 +272,29 @@ h1 {
 .like-fixed {
   background-color: #DB8876;
   height: 70px;
-  width: 400px;
+  width: 350px;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   bottom: 0;
   right: 20px;
+}
+.like-fixed div {
+  display: flex;
+  align-items: center;
+}
+.like-fixed div .plike-totale {
+  margin-left: 30px;
+  margin-right: 5px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.like-fixed div i {
+  margin-left: 0;
+}
+.like-fixed .plike-price {
+  margin-right: 30px;
+  font-size: 25px;
+  font-weight: bold;
 }/*# sourceMappingURL=style.css.map */

@@ -202,8 +202,29 @@
 .like-fixed{
     background-color: #DB8876;
     height: 70px;
-    width: 400px;
+    width: 350px;
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     bottom: 0;
     right: 20px;
+    div {
+        display: flex;
+        align-items: center;
+        .plike-totale{
+            margin-left: 30px;
+            margin-right: 5px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        i{
+            margin-left: 0;
+        }
+    }
+    .plike-price{
+        margin-right: 30px;
+        font-size: 25px;
+        font-weight: bold;
+    }
 }
