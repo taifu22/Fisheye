@@ -1,4 +1,4 @@
-class AppPageIndex {
+class AppPageHome {
     constructor() {
         this.photographersSection = document.querySelector('.photographer_section')
         this.apiPhoto = new PhotographerApi('/data/photographers.json');
@@ -17,7 +17,7 @@ class AppPageIndex {
 
 }
  
-const app = new AppPageIndex();
+const app = new AppPageHome();
 app.displayData();
 
 
