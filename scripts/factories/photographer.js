@@ -106,24 +106,39 @@ function photographerFactory(data, data1) {
     });
 
 //fonction pour ajouter et enlever le like pour chaque media
- let pLike = document.querySelector('p-like');
-let checkLike = true
+
+// function clickLike(e) {
+//   let pLike = document.querySelectorAll('.p-like');
+//   let string = parseInt(e.currentTarget.textContent)
+//   console.log(arrayLikes.indexOf(string));
+//     pLike.forEach(btn => {
+//       let numero = parseInt(btn.textContent);
+//       if (numero === string && arrayLikes.includes(string)) {
+//         btn.innerHTML = numero+1 
+//       } 
+//     })
+// } 
+
 function clickLike() {
-  let numero = parseInt(document.querySelector('.p-like').textContent);
+  let pLike = document.querySelector('.p-like');
+  let numero = parseInt(pLike.textContent);
    if (checkLike) {
-     console.log('ca marche en plus');
-     pLike.innerHTML = numero+1 
-     checkLike = false
+     console.log('ciao +');
+      pLike.innerHTML = numero+1 
    } else {
-    console.log('ca marche en moins');
-    pLike.innerHTML = numero-1 
-    checkLike = true
+     console.log('ciao -');
+      pLike.innerHTML = numero-1
    }
-} 
+}
 
 //evenement pour déclancher la fonction créé en haut concernant les likes de chaque media
-const eventLikes = document.querySelectorAll('.fa-heart')
+const eventLikes = document.querySelectorAll('.heart')
 eventLikes.forEach((btn) => btn.addEventListener("click", clickLike));
+
+//affichage des totals like dans la div fixed
+//let likesMedias += arrayLikes[arrayLikes.length] 
+const likeTotal = document.querySelector('.like-fixed')
+likeTotal.innerHTML = ``
 
 //on map notre array avec les videos et on créé pour chaque élément une balise video, pour l'afficher dans le navigateur
     arrayVideos.map((el) => {

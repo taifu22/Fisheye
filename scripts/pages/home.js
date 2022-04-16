@@ -7,8 +7,8 @@ class AppPageIndex {
     async displayData() {
 
         const photographers = await this.apiPhoto.getPhotographers();
-
-        photographers.map((photographer) => {
+        
+        photographers.photographers.map((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             this.photographersSection.appendChild(userCardDOM);

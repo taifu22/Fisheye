@@ -1,5 +1,7 @@
 #main-page-photographer {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .photographer-header {
         display: flex;
         justify-content: space-between;
@@ -34,6 +36,7 @@
         margin-left: 20px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         .card-photo{
             display: flex;
             flex-direction: column;
@@ -151,15 +154,15 @@
     overflow: auto;
     background-color: rgba(226, 226, 231, 0.9);
     img {
-        height: 100%;
-        width: 1100px;
+        height: 80%;
+        width: 60%;
         object-fit: cover;
         margin-top: 100px;
         margin-left: 20%;
     }
     video {
-        height: 700px;
-        width: 1100px;
+        height: 80%;
+        width: 60%;
         margin-top: 100px;
         margin-left: 22%;
     }
@@ -188,10 +191,19 @@
         cursor: pointer;
     }
     h2 {
-        position: absolute;
+       position: absolute;
         color: #D3573C;
         top: 5px;
-        left: 700px;
+        left: 40%;
         font-size: 40px;
     }
+}
+
+.like-fixed{
+    background-color: #DB8876;
+    height: 70px;
+    width: 400px;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
 }
