@@ -137,12 +137,24 @@ h1 {
   justify-content: space-between;
 }
 #main-page-photographer .photos-medias .card-photo .p-heart .heart {
+  font-size: 20px;
   display: flex;
+  cursor: pointer;
 }
-#main-page-photographer .photos-medias .card-photo .p-heart .heart i {
-  margin-top: 23px;
+#main-page-photographer .photos-medias .card-photo .p-heart .heart .fas {
+  color: transparent;
+  background-image: linear-gradient(grey, white);
+  display: block;
+  background-clip: text;
+  -webkit-background-clip: text;
+  margin-top: 20px;
   margin-left: 10px;
-  color: red;
+  margin-right: 0;
+  transition: all 230ms ease-in-out;
+}
+#main-page-photographer .photos-medias .card-photo .p-heart .heart .fas-click {
+  transform: scale(1.2);
+  background-image: linear-gradient(rgb(236, 83, 83), white);
 }
 
 #contact_modal {
@@ -271,7 +283,7 @@ h1 {
 
 .like-fixed {
   background-color: #DB8876;
-  height: 70px;
+  height: 55px;
   width: 350px;
   position: fixed;
   display: flex;

@@ -57,15 +57,26 @@
             .p-heart{
                 display: flex;
                 justify-content: space-between;
-                .heart{
+                .heart {
+                    font-size: 20px;
                     display: flex;
-                    i{
-                        margin-top: 23px;
+                    cursor: pointer;
+                    .fas {
+                        color: transparent;
+                        background-image: linear-gradient(grey,white);
+                        display: block;
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                        margin-top: 20px;
                         margin-left: 10px;
-                        color: red;
+                        margin-right: 0;
+                        transition: all 230ms ease-in-out;
                     }
-                }
-            }
+                    .fas-click{
+                         transform: scale(1.2);
+                         background-image: linear-gradient(rgb(236, 83, 83),white);
+                    }
+            }   }
         }
     }
 }
@@ -201,7 +212,7 @@
 
 .like-fixed{
     background-color: #DB8876;
-    height: 70px;
+    height: 55px;
     width: 350px;
     position: fixed;
     display: flex;

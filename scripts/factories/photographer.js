@@ -13,7 +13,7 @@ function photographerFactory(data) {
         </a>
         <p class="p-country">${country}, ${city}</p>
         <p class="p-tagline">${tagline}</p>
-        <p class="p-price">${price} + Є/jour</p>`;
+        <p class="p-price">${price}Є / jour</p>`;
     return article;
   }
 

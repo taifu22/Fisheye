@@ -30,7 +30,10 @@ class MediaPagePhotographe {
                          style="cursor:pointer;" alt="${el}">
                          <div class="p-heart">
                          <p>${this.arrayTitles[index]}</p>
-                         <div id="${this.arrayIdMedias[id]}" class="heart"><p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p><i class="fa-solid fa-heart"></i></div>
+                         <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
+                         <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
+                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart"></i>
+                         </div>
                          </div>`;
       this.photosMedias.appendChild(photo);
       index += 1;
@@ -46,7 +49,11 @@ class MediaPagePhotographe {
                    </video>
                    <div class="p-heart">
                    <p>${this.arrayTitles[index]}</p>
-                   <div id="${this.arrayIdMedias[id]}" class="heart"><p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p><i class="fa-solid fa-heart"></i></div>
+                   <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
+                   <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
+                   <i class="fas fa-heart"></i>
+                   <i class="far fa-heart"></i>
+                   </div>
                    </div>`;
       video.setAttribute('class', 'card-photo')             
       this.photosMedias.appendChild(video);
@@ -63,12 +70,16 @@ class MediaPagePhotographe {
     //affichage des likes totales des medias dans chaque page photographe
     const likeTotale = document.querySelector('.like-fixed');
     likeTotale.innerHTML = `<div><p class="plike-totale">${result}</p><i class="fa-solid fa-heart"></i></div>
-                             <p class="plike-price">${this.array[0].price} / jour</p>`;
+                             <p class="plike-price">${this.array[0].price}Є  / jour</p>`;
 
     //fonction pour ajouter et enlever le like pour chaque media
     let numero = 0;
     let totale = 0;
     let photo1Index = null;
+    let fasHeart = document.querySelectorAll('.fas');
+      
+      
+      
     function clickLike(e) {
       let plike = document.querySelectorAll(".p-like");
       let plikeTotaleLikes = document.querySelector('.plike-totale');
@@ -83,15 +94,27 @@ class MediaPagePhotographe {
           totale = parseInt(document.querySelector('.plike-totale').textContent)
           btn.innerHTML = numero + 1;
           plikeTotaleLikes.innerHTML = totale + 1; 
+          fasHeart.forEach(btn => {
+            if (btn.id === numeroid) {
+              btn.classList.add('fas-click')
+            }
+          })
         } else if (numeroid === currentImage.id && btn.textContent != arrayLikes1[photo1Index]) {
           numero = parseInt(btn.textContent);
           totale = parseInt(document.querySelector('.plike-totale').textContent)
           btn.innerHTML = numero - 1;
           plikeTotaleLikes.innerHTML = totale - 1; 
+          fasHeart.forEach(btn => {
+            if (btn.id === numeroid) {
+              btn.classList.remove('fas-click')
+            }
+          })  
         } 
       })   
     }
 
+      
+    
     //evenement pour déclancher la fonction créé en haut concernant les likes de chaque media
     const eventLikes = document.querySelectorAll(".heart");
     eventLikes.forEach((btn) => btn.addEventListener("click", clickLike));
