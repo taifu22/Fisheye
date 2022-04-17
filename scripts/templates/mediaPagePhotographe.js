@@ -51,8 +51,7 @@ class MediaPagePhotographe {
                    <p>${this.arrayTitles[index]}</p>
                    <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
                    <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                   <i class="fas fa-heart"></i>
-                   <i class="far fa-heart"></i>
+                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart"></i>
                    </div>
                    </div>`;
       video.setAttribute('class', 'card-photo')             
