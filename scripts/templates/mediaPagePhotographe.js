@@ -26,7 +26,7 @@ class MediaPagePhotographe {
     this.arrayImages.map((el) => {
       const photo = document.createElement("div");
       photo.setAttribute("class", "card-photo");
-      photo.innerHTML = `<img src="/assets/images/${this.array[0].name}/${el}" class="lightbox-activate images-photographers"
+      photo.innerHTML = `<img src="assets/images/${this.array[0].name}/${el}" class="lightbox-activate images-photographers"
                          style="cursor:pointer;" alt="${el}">
                          <div class="p-heart">
                          <p>${this.arrayTitles[index]}</p>
@@ -42,7 +42,7 @@ class MediaPagePhotographe {
     this.arrayVideos.map((el) => {
       const video = document.createElement("div");
       video.innerHTML = `<video style="cursor:pointer;" class="images-photographers lightbox-activate" controls> 
-                   <source src="/assets/images/${this.array[0].name}/${el}" type="video/mp4">
+                   <source src="assets/images/${this.array[0].name}/${el}" type="video/mp4">
                    </video>
                    <div class="p-heart">
                    <p>${this.arrayTitles[index]}</p>

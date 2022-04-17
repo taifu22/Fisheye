@@ -1,6 +1,6 @@
 class AppPagePhotographer {
     constructor() {
-        this.apiPhoto = new PhotographerApi('/data/photographers.json');
+        this.apiPhoto = new PhotographerApi('data/photographers.json');
     }
 
     async getPagePhotographe(){ 

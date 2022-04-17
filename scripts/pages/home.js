@@ -1,7 +1,7 @@
 class AppPageHome {
     constructor() {
         this.photographersSection = document.querySelector('.photographer_section')
-        this.apiPhoto = new PhotographerApi('/data/photographers.json');
+        this.apiPhoto = new PhotographerApi('data/photographers.json');
     }
 
     async displayData() {
