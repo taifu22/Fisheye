@@ -96,7 +96,7 @@ class MediaPagePhotographe {
         })
       }
     });
-
+console.log(formFilter);
     //calcule totale des likes dans le tableau arrayLikes (result contiendra notre totale)
     let arrayLikes1 = this.arrayLikes;
     let result = 0;

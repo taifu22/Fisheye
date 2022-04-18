@@ -10,6 +10,9 @@ class Lightbox {
     //fusion du tableau des photo avec celui des videos pour l'affichage en lightbox
     let arrayMedias = this.arrayImages.concat(this.arrayVideos);
 
+    //fonction pour retrouver la value du select par rapport au tri pour afficher nos medias dans la lightbox
+    
+
     //function pour afficher la lightbox
     let photo1 = null;
     let photo1Index = null;
@@ -104,22 +107,32 @@ class Lightbox {
     closelightbox.addEventListener("click", closeLightbox);
 
     //EventListener permettant d'effectuer des actions au clique ou à l'aide du clavier
-    document.addEventListener('keyup', (event) => {checkLightboxKeyboard(event)})
+    document.addEventListener("keyup", (event) => {
+      checkLightboxKeyboard(event);
+    });
 
-    //Function pour permettre la navigation avec le clavier au niveau de la lightbox 
-    function checkLightboxKeyboard(event){
-       //Touches 'D', '6' (pad num.), '►' permettent de faire défiller les publications suivantes
-       if(event.keyCode === 68 || event.keyCode === 102 || event.keyCode === 39){
-           switchNext()
-       }
-       //Touches 'Q', '4' (pad num.), '◄' permettent de faire défiller les publications précédentes
-       if(event.keyCode === 81 || event.keyCode === 100 || event.keyCode === 37){
-           switchPrevious()
-       }
-       //La touche 'Échap' permet de fermer la lightbox
-       if(event.keyCode === 27){
-           closeLightbox()
-       }
-     }
+    //Function pour permettre la navigation avec le clavier au niveau de la lightbox
+    function checkLightboxKeyboard(event) {
+      //Touches 'D', '6' (pad num.), '►' permettent de faire défiller les publications suivantes
+      if (
+        event.keyCode === 68 ||
+        event.keyCode === 102 ||
+        event.keyCode === 39
+      ) {
+        switchNext();
+      }
+      //Touches 'Q', '4' (pad num.), '◄' permettent de faire défiller les publications précédentes
+      if (
+        event.keyCode === 81 ||
+        event.keyCode === 100 ||
+        event.keyCode === 37
+      ) {
+        switchPrevious();
+      }
+      //La touche 'Échap' permet de fermer la lightbox
+      if (event.keyCode === 27) {
+        closeLightbox();
+      }
+    }
   }
 }
