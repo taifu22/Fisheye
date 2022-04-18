@@ -24,7 +24,7 @@ class Lightbox {
       lightboxShow.append(photo1);
       photo1Index = arrayMedias.indexOf(photo1.alt);
       h2.textContent = arrayTitles1[photo1Index];
-      lightboxShow.append(h2);
+      lightboxShow.prepend(h2);
     }
 
     //événement pour afficher la lightbox

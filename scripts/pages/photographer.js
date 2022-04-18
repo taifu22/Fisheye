@@ -66,12 +66,23 @@ class AppPagePhotographer {
       }
     }); 
 
+    //utilisation du tableau pour stocker les dates des medias du photographe lié à l'url-slice
+    var arrayDate = [];
+    photo.media.map((element) => {
+      if (element.photographerId == url_slice && element.date) {
+        const date = element.date;
+        arrayDate.push(date);
+      }
+    }); 
+
        const showcards = new HeaderPagePhotographe(photo, array, url_slice)
        const showcardsPhotographers = showcards.createHeader()
-       const showMedias = new MediaPagePhotographe(arrayImages, arrayVideos, arrayLikes, arrayTitles, arrayIdMedias, array, url_slice)
+       const showMedias = new MediaPagePhotographe(arrayImages, arrayVideos, arrayLikes, arrayTitles, arrayIdMedias,arrayDate, array, url_slice)
        const showMediasPhotographe = showMedias.getPhotosMedias()
        const showLightbox = new Lightbox(arrayImages, arrayVideos, arrayTitles, array)
        const showLightboxPhotographer = showLightbox.getLightbox()
+       //const showFilter = new FilterForm(arrayDate)
+       //const showFilterPhotographer = showFilter.getFilterFromDate()
        
        return {showcardsPhotographers, showMediasPhotographe, showLightboxPhotographer }
     }
