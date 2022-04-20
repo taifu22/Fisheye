@@ -238,48 +238,51 @@ h1 {
   overflow: auto;
   background-color: rgba(226, 226, 231, 0.9);
 }
-.lightbox img {
-  height: 80%;
-  width: 60%;
-  -o-object-fit: cover;
-     object-fit: cover;
+.lightbox .lightbox-content {
+  background-color: #db8876;
+  height: 700px;
+  width: 1300px;
+}
+.lightbox .lightbox-content .image-lightbox {
+  max-width: 800px;
+  height: 500px;
   margin-top: 40px;
-  margin-left: 20%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
-.lightbox video {
-  height: 80%;
-  width: 60%;
+.lightbox .lightbox-content video {
+  max-width: 800px;
+  height: 500px;
   margin-top: 40px;
-  margin-left: 22%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
-.lightbox .fa-xmark {
-  top: 50px;
-  margin-left: 90%;
+.lightbox .lightbox-content .fa-xmark {
+  margin-left: 1000px;
+  margin-bottom: 500px;
   font-size: 100px;
   color: #d3573c;
   position: fixed;
   cursor: pointer;
 }
-.lightbox .fa-chevron-left {
-  margin-top: 400px;
-  margin-left: 10%;
+.lightbox .lightbox-content .fa-chevron-left {
+  margin-right: 1000px;
   font-size: 100px;
   color: #d3573c;
   position: fixed;
   cursor: pointer;
 }
-.lightbox .fa-chevron-right {
-  margin-top: 400px;
-  margin-left: 90%;
+.lightbox .lightbox-content .fa-chevron-right {
+  margin-left: 1000px;
   font-size: 100px;
   color: #d3573c;
   position: fixed;
   cursor: pointer;
 }
-.lightbox h2 {
+.lightbox .lightbox-content h2 {
   text-align: center;
   margin-bottom: 0;
-  color: #d3573c;
+  color: white;
   top: 5px;
   left: 40%;
   font-size: 40px;

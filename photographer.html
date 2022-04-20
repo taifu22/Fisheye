@@ -8,14 +8,14 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
+    <header role="banner">
       <a href="/index.html">
         <img src="assets/images/logo.png" class="logo" />
       </a>
     </header>
     <main id="main-page-photographer">
-      <div class="photographer-header"></div>
-      <form class="filter-form" action="#" method="POST">
+      <div class="photographer-header" aria-label="Page photographer Profil"></div>                 
+      <form class="filter-form" action="photographer-page.html" method="POST" >
         <label for="filter-select">Trier par</label>
         <select name="filter-select" id="filter-select">
             <option value="popularite">Popularité</option>
@@ -23,16 +23,18 @@
             <option value="titre">Titre</option>
         </select>
     </form>
-      <div class="photos-medias"></div>
-    </main>
-    <div id="contact_modal">
+      <section class="photos-medias" aria-label='photographer works'>
+      </section>
+    </main> 
+    <div id="contact_modal" role="dialog" aria-label="contact me form" aria-labelledby="form-title"
+    aria-hidden="true">
 			<div class="modal">
-				<header> 
+				<header aria-label="contact form header"> 
           <h2 class="h2-modal-contact">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Close form" role="button" aria-hidden="true"/>
         </header>
-				<form id="validate-form">
-					<div>
+				<form id="validate-form" action="photographer-page.html" method="POST">
+					<div aria-label="Contact form">
 						<label>Prénom</label>
             <div class="error prenom">Veuillez entrer 2 caractères ou plus pour le champ du prénom</div>
 						<input type="text" id="first" name="first" minlength="2"/>
@@ -46,15 +48,17 @@
             <div class="error textarea">Veuillez entrer au moins 20 caractères, et jusqu'à 200, pour le champ du message</div>
 						<input type="text" class="textArea" id="textArea" name="textArea">
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button aria-label="Send form" class="contact_button">Envoyer</button>
 				</form>
 			</div>
       
 		</div>
-    <div class="lightbox">
-     <i class="fa-solid fa-xmark"></i>
-      <i class="fa-solid fa-chevron-left"></i>
-      <i class="fa-solid fa-chevron-right"></i>
+    <div class="lightbox" aria-hidden="true" role="dialog">
+      <div class="lightbox-content">
+        <i class="fa-solid fa-xmark" role="button"></i>
+        <i class="fa-solid fa-chevron-left" role="button"></i>
+        <i class="fa-solid fa-chevron-right" role="button"></i>
+      </div>
     </div>
     <div class="like-fixed">
     </div>

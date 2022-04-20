@@ -1,80 +1,67 @@
 class Lightbox {
-  constructor(arrayImages, arrayVideos, arrayTitles, array) {
-    this.arrayImages = arrayImages;
-    this.arrayVideos = arrayVideos;
+  constructor(arrayTitles, array) {
     this.arrayTitles = arrayTitles;
     this.array = array;
   }
 
-  getLightbox() {
-    //fusion du tableau des photo avec celui des videos pour l'affichage en lightbox
-    let arrayMedias = this.arrayImages.concat(this.arrayVideos);
-
+  getLightbox(arrayR) {
     //fonction pour retrouver la value du select par rapport au tri pour afficher nos medias dans la lightbox
-    
+    //let arrayR = this.arrayMedias;
+    let arrayM = []
+    arrayR.forEach(btn => {
+      arrayM.push(btn.firstElementChild)
+    })
+    let arrayM2 = [];
+    arrayM.forEach((btn) => {
+      arrayM2.push(btn.alt);
+    });
 
     //function pour afficher la lightbox
-    let photo1 = null;
+    let photo1;
     let photo1Index = null;
     let h2 = document.createElement("h2");
     const lightboxShow = document.querySelector(".lightbox");
-    let arrayTitles1 = this.arrayTitles;
-    let array1 = this.array;
+    const lightboxShowContent = document.querySelector(".lightbox-content")
     function openLightbox(e) {
       photo1 = e.currentTarget.cloneNode(true);
-      lightboxShow.style.display = "block";
+      lightboxShow.style.display = "flex";
+      lightboxShow.style.justifyContent = 'center';
+      lightboxShow.style.alignItems = 'center';
+      lightboxShowContent.style.display = "flex";
+      lightboxShowContent.style.flexDirection = 'column-reverse';
+      lightboxShowContent.style.justifyContent = 'center';
+      lightboxShowContent.style.alignItems = 'center';
       photo1.setAttribute("class", "image-lightbox");
-      lightboxShow.append(photo1);
-      photo1Index = arrayMedias.indexOf(photo1.alt);
-      h2.textContent = arrayTitles1[photo1Index];
-      lightboxShow.prepend(h2);
+      photo1Index = arrayM2.indexOf(photo1.alt);
+      h2.textContent = arrayM2[photo1Index];
+      lightboxShowContent.append(photo1, h2);
+      console.log(arrayM);
     }
 
     //événement pour afficher la lightbox
     const lightbox = document.querySelectorAll(".lightbox-activate");
     lightbox.forEach((btn) => btn.addEventListener("click", openLightbox));
 
-    //function pour la création des medias dans la lightbox pour passer à la photo suivante ou precedente
-    let video1 = document.createElement("video");
-    let source = document.createElement("source");
-
-    function createPhotoLightbox() {
-      if (arrayMedias[photo1Index].includes(".mp4")) {
-        console.log(arrayMedias[photo1Index]);
-        photo1.style.display = "none";
-        video1.setAttribute("controls", "");
-        video1.setAttribute("class", "image-lightbox");
-        video1.setAttribute("autoplay", "");
-        source.setAttribute(
-          "src",
-          `/assets/images/${array1[0].name}/${arrayMedias[photo1Index]}`
-        );
-        source.setAttribute("type", "video/mp4");
-        video1.appendChild(source);
-        lightboxShow.appendChild(video1);
-        h2.textContent = arrayTitles1[photo1Index];
-      } else if (arrayMedias[photo1Index].includes(".jpg")) {
-        console.log(arrayMedias[photo1Index]);
-        video1.remove();
-        photo1.style.display = "block";
-        photo1 = document.querySelector(".image-lightbox");
-        photo1.src = `/assets/images/${array1[0].name}/${arrayMedias[photo1Index]}`;
-        h2.textContent = arrayTitles1[photo1Index];
-        photo1.alt = `${arrayMedias[photo1Index]}`;
-      }
-    }
 
     //fonction pour passer à la photo suivante
     function switchNext() {
-      if (photo1Index === arrayMedias.length - 1) {
+      if (photo1Index === arrayM.length - 1) {
         photo1Index = 0;
-        createPhotoLightbox();
+        photo1.remove();
+        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1.setAttribute("class", "image-lightbox");
+        h2.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, h2);
       } else {
         photo1Index += 1;
-        createPhotoLightbox();
+        photo1.remove();
+        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1.setAttribute("class", "image-lightbox");
+        h2.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, h2);
       }
     }
-
+ 
     //evenement pour changer d'image dans la lightbox coté Right (lié à la fonction qu'on vient de créer)
     const lightboxRight = document.querySelector(".fa-chevron-right");
     lightboxRight.addEventListener("click", switchNext);
@@ -82,14 +69,22 @@ class Lightbox {
     //fonction pour passer à la photo precedente
     function switchPrevious() {
       if (photo1Index === 0) {
-        photo1Index = arrayMedias.length - 1;
-        createPhotoLightbox();
+        photo1Index = arrayM.length - 1;
+        photo1.remove()
+        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1.setAttribute("class", "image-lightbox");
+        h2.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, h2);
       } else {
         photo1Index -= 1;
-        createPhotoLightbox();
+        photo1.remove()
+        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1.setAttribute("class", "image-lightbox");
+        h2.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, h2);
       }
     }
-
+        
     //evenement pour changer d'image dans la lightbox coté Left (lié à la fonction qu'on vient de créer)
     const lightboxLeft = document.querySelector(".fa-chevron-left");
     lightboxLeft.addEventListener("click", switchPrevious);
@@ -98,8 +93,10 @@ class Lightbox {
     function closeLightbox() {
       const lightboxShow = document.querySelector(".lightbox");
       const imgDelete = document.querySelector(".image-lightbox");
-      imgDelete.remove();
+      imgDelete.remove()
+      console.log(imgDelete);
       lightboxShow.style.display = "none";
+      lightboxShowContent.removeChild(photo1)
     }
 
     //evenement pour fermer la lightbox (lié à la fonction qu'on vient de créer)

@@ -31,13 +31,13 @@ class MediaPagePhotographe {
       photo = document.createElement("div");
       photo.setAttribute("class", "card-photo");
       photo.setAttribute("id", `${this.arrayDate[index]}`);
-      photo.innerHTML = `<img src="assets/images/${this.array[0].name}/${el}" class="lightbox-activate images-photographers"
-                         style="cursor:pointer;" alt="${el}">
+      photo.innerHTML = `<img src="assets/images/${this.array[0].name}/${el}" class="images-photographers lightbox-activate"
+                         style="cursor:pointer;" alt="${el}" tabindex="0" >
                          <div class="p-heart">
                          <p>${this.arrayTitles[index]}</p>
                          <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
                          <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart"></i>
+                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button" tabindex="0"></i>
                          </div>
                          </div>`;
       this.photosMedias.appendChild(photo);
@@ -51,14 +51,15 @@ class MediaPagePhotographe {
     this.arrayVideos.map((el) => {
       const video = document.createElement("div");
       video.setAttribute("id", `${this.arrayDate[index]}`);
-      video.innerHTML = `<video style="cursor:pointer;" class="images-photographers lightbox-activate" controls> 
+      video.setAttribute("class", "card-photo");
+      video.innerHTML = `<video style="cursor:pointer;" class="images-photographers lightbox-activate" controls alt="${el}"> 
                    <source src="assets/images/${this.array[0].name}/${el}" type="video/mp4">
                    </video>
                    <div class="p-heart">
                    <p>${this.arrayTitles[index]}</p>
                    <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
                    <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart"></i>
+                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button"></i>
                    </div>
                    </div>`;
       video.setAttribute("class", "card-photo");
@@ -67,36 +68,46 @@ class MediaPagePhotographe {
     });
 
     //je fait 2 clone de mon tableau mediatrie pour pouvoir l'utiliser dans mes 3 conditions au niveau des tries
+    let mediatriDate = mediatri.slice();
     let mediatriPopularite = mediatri.slice();
     let mediatriTitle = mediatri.slice();
+    let titles = this.arrayTitles
+
+
+let newtriLight = new Lightbox(titles, this.array);
+//newtriLight.getLightbox(mediatri);
 
     //evenement pour trier les medias via la date, la popularite et le titre (ordre alphabetique)
     const formFilter = document.querySelector(".filter-form");
     formFilter.addEventListener("change", (e) => {
-      if (e.target.value === "date") {
-        mediatri.sort((a, b) => {
+      if (e.target.value == "date") {
+        newtriLight.getLightbox()
+        mediatriDate.sort((a, b) => {
           return a.id > b.id ? 1 : -1;
         });
-        mediatri.forEach((btn) => {
-          return this.photosMedias.appendChild(btn)
+        mediatriDate.forEach((btn) => {
+          return this.photosMedias.append(btn)
         });
-      } else if (e.target.value === "popularite") {
+        newtriLight.getLightbox(mediatriDate)
+      } else if (e.target.value == "popularite") {
         mediatriPopularite.sort((a, b) => {
           return parseInt(a.lastElementChild.lastElementChild.firstElementChild.textContent) < parseInt(b.lastElementChild.lastElementChild.firstElementChild.textContent) ? 1 : -1;
         });
         mediatriPopularite.forEach((btn) => {
-          return this.photosMedias.appendChild(btn)
+          return this.photosMedias.append(btn)
         });
-      } else if (e.target.value === "titre"){
+        newtriLight.getLightbox(mediatriPopularite)
+      } else if (e.target.value == "titre"){
         mediatriTitle.sort((a,b) => {
           return a.lastElementChild.firstElementChild.textContent > b.lastElementChild.firstElementChild.textContent ? 1 : -1;
         })
         mediatriTitle.forEach(btn => {
-          return this.photosMedias.appendChild(btn)
+          return this.photosMedias.append(btn)
         })
+        newtriLight.getLightbox(mediatriTitle)
       }
     });
-console.log(formFilter);
+
     //calcule totale des likes dans le tableau arrayLikes (result contiendra notre totale)
     let arrayLikes1 = this.arrayLikes;
     let result = 0;
@@ -107,7 +118,7 @@ console.log(formFilter);
 
     //affichage des likes totales des medias dans chaque page photographe
     const likeTotale = document.querySelector(".like-fixed");
-    likeTotale.innerHTML = `<div><p class="plike-totale">${result}</p><i class="fa-solid fa-heart"></i></div>
+    likeTotale.innerHTML = `<div><p class="plike-totale">${result}</p><i class="fa-solid fa-heart" aria-label='likes'></i></div>
                              <p class="plike-price">${this.array[0].price}Є  / jour</p>`;
 
     //fonction pour ajouter et enlever le like pour chaque media
@@ -158,7 +169,7 @@ console.log(formFilter);
         }
       });
     }
-
+    
     //evenement pour déclancher la fonction créé en haut concernant les likes de chaque media
     const eventLikes = document.querySelectorAll(".heart");
     eventLikes.forEach((btn) => btn.addEventListener("click", clickLike));

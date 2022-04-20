@@ -8,6 +8,7 @@ function photographerFactory(data) {
 //Affichage des cards dans la page d'accuei
   function getUserCardDOM() {
     const article = document.createElement("article");
+    article.setAttribute("aria-label", "Photographer Profil")
     article.innerHTML = `<a href="photographer.html?${id}">
         <img src="${picture}" alt="${name}"><h2>${name}</h2>
         </a>
