@@ -63,21 +63,14 @@ class MediaPagePhotographe {
 		let mediatriDate = [...mediatri];
 		let mediatriPopularite = [...mediatri];
 		let mediatriTitle = [...mediatri];
-		let titles = this.arrayTitles
-
-	// let newtriLight = new Lightbox(titles, mediatri);
-	// newtriLight.getLightbox() 
-	//getLightbox(mediatri)
-
 	
 		//evenement pour trier les medias via la date, la popularite et le titre (ordre alphabetique)
 		const formFilter = document.querySelector(".filter-form");
 		console.log(formFilter.lastElementChild.value);
 		formFilter.addEventListener("change", changeFilter);
-        
-	 	const photosMedias = this.photosMedias
 
-	   function changeFilter(e) {
+		const photosMedias = this.photosMedias
+	    function changeFilter(e) {
 
 			if (e.target.value === "date") {
 
@@ -107,30 +100,9 @@ class MediaPagePhotographe {
 				});
 			}
 		}
-
-		getLightbox(mediatri, mediatriDate, mediatriPopularite, mediatriTitle)
-	// let date = document.querySelector('.date');
-	// let popularite = document.querySelector('.popularite');
-
-	// function datelight() {
-	// 	mediatriDate.sort((a, b) => {
-	// 		return a.id > b.id ? 1 : -1;
-	// 	});
-	// 	mediatriDate.forEach((btn) => {
-	// 		return photosMedias.appendChild(btn)
-	// 	});
-	// }
-	// date.addEventListener('click', datelight)
-
-	// function popularitelight() {
-	// 	mediatriPopularite.sort((a, b) => {
-	// 		return parseInt(a.lastElementChild.lastElementChild.firstElementChild.textContent) < parseInt(b.lastElementChild.lastElementChild.firstElementChild.textContent) ? 1 : -1;
-	// 	});
-	// 	mediatriPopularite.forEach((btn) => {
-	// 		return photosMedias.appendChild(btn)
-	// 	});
-	// }
-	// popularite.addEventListener('click', popularitelight)
+        
+		let triLightbox = new Lightbox(mediatri, mediatriDate, mediatriPopularite, mediatriTitle);
+		triLightbox.getLightbox()
 		
 		//calcule totale des likes dans le tableau arrayLikes (result contiendra notre totale)
 		let arrayLikes1 = this.arrayLikes;

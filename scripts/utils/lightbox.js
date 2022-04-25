@@ -1,10 +1,12 @@
-//  class Lightbox {
-//    constructor(arrayTitles, arrayR){
-//      this.arrayTitles = arrayTitles;
-//      this.arrayR = arrayR
-//    }
+ class Lightbox {
+   constructor(mediatri, mediatriDate, mediatriPopularite, mediatriTitle){
+     this.mediatri = mediatri;
+     this.mediatriDate = mediatriDate;
+     this.mediatriPopularite = mediatriPopularite;
+     this.mediatriTitle = mediatriTitle
+   }
 
-  function getLightbox(mediatri, mediatriDate, mediatriPopularite, mediatriTitle) {
+  getLightbox() {
     
     //on récupere et on stocke dans check la value du select par rapport au tri pour afficher nos medias dans la lightbox
     let check;
@@ -14,59 +16,44 @@
     });
 
 
-    //variables à utiliser dans la condition qui me triera ma lightbox selon le tableau associé à la value du select 
-    let arrayM2;
-    let arrayM
-    let photo1 = null;
-    let photo1Index = null;
-    let lightboxShow = null;
-    let lightboxShowContent = null;
-    let h2 = null
-
+    //variables à utiliser dans la condition qui me triera la lightbox selon le tableau associé à la value du select 
+    let arrayM2; let arrayM; let photo1 = null; let photo1Index = null; let lightboxShow = null; let lightboxShowContent = null; let h2 = null
+    let mediatri = this.mediatriDate; let mediatriDate = this.mediatriDate; let mediatriPopularite = this.mediatriPopularite; let mediatriTitle = this.mediatriTitle
+    
     //fonction pour ouvrir la lightbox
     function openLightbox (e){
       
       //conditions pour utiliser le bon tableau dans la fonction selon le tri et du coup la value du select
+      function checkCondition(arrayMediatri) {
+        arrayM = []
+        arrayMediatri.forEach(btn => {
+          arrayM.push(btn.firstElementChild)
+        })
+        arrayM2 = [];
+        arrayM.forEach((btn) => {
+          arrayM2.push(btn.id);
+        });
+      }
       if (check === 'date') {
+
         console.log('ifdate');
-        arrayM = []
-        mediatriDate.forEach(btn => {
-          arrayM.push(btn.firstElementChild)
-        })
-        arrayM2 = [];
-        arrayM.forEach((btn) => {
-          arrayM2.push(btn.id);
-        });
+        checkCondition(mediatriDate)
+
        } else if (check === 'popularite') {
+
         console.log('ifpopularite');
-        arrayM = []
-        mediatriPopularite.forEach(btn => {
-          arrayM.push(btn.firstElementChild)
-        })
-        arrayM2 = [];
-        arrayM.forEach((btn) => {
-          arrayM2.push(btn.id);
-        });
+        checkCondition(mediatriPopularite)
+
        } else if (check === 'titre') {
+
         console.log('iftitle');
-        arrayM = []
-        mediatriTitle.forEach(btn => {
-          arrayM.push(btn.firstElementChild)
-        })
-        arrayM2 = [];
-        arrayM.forEach((btn) => {
-          arrayM2.push(btn.id);
-        });
+        checkCondition(mediatriTitle)
+
        } else {
+
         console.log('ifnormal');
-        arrayM = []
-        mediatri.forEach(btn => {
-          arrayM.push(btn.firstElementChild)
-        })
-        arrayM2 = [];
-        arrayM.forEach((btn) => {
-          arrayM2.push(btn.id);
-       })
+        checkCondition(mediatri)
+
        }
       
       //affichage de la lightbox selon le tableau choisi avec la condition juste en haut 
@@ -180,6 +167,4 @@
       }
     }
   }
-
-
-//}
+}
