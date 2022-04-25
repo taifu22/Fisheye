@@ -16,12 +16,12 @@
     });
 
 
-    //variables à utiliser dans la condition qui me triera la lightbox selon le tableau associé à la value du select 
-    let arrayM2; let arrayM; let photo1 = null; let photo1Index = null; let lightboxShow = null; let lightboxShowContent = null; let h2 = null
+    //variables à utiliser dans la condition qui me triera la lightbox selon le tableau associé à la value du select, et la fonction pour ouvrir la lightbox
+    let arrayM2; let arrayM; let photo1 = null; let photo1Index = null; let lightboxShow = null; let lightboxShowContent = null; let h2 = null;
     let mediatri = this.mediatriDate; let mediatriDate = this.mediatriDate; let mediatriPopularite = this.mediatriPopularite; let mediatriTitle = this.mediatriTitle
     
     //fonction pour ouvrir la lightbox
-    function openLightbox (e){
+     function openLightbox (e){
       
       //conditions pour utiliser le bon tableau dans la fonction selon le tri et du coup la value du select
       function checkCondition(arrayMediatri) {
@@ -34,45 +34,31 @@
           arrayM2.push(btn.id);
         });
       }
+
       if (check === 'date') {
-
-        console.log('ifdate');
         checkCondition(mediatriDate)
-
-       } else if (check === 'popularite') {
-
-        console.log('ifpopularite');
+      } 
+      else if (check === 'popularite') {
         checkCondition(mediatriPopularite)
-
-       } else if (check === 'titre') {
-
-        console.log('iftitle');
+      }
+      else if (check === 'titre') {
         checkCondition(mediatriTitle)
-
-       } else {
-
-        console.log('ifnormal');
+      }
+      else {
         checkCondition(mediatri)
-
        }
       
       //affichage de la lightbox selon le tableau choisi avec la condition juste en haut 
       lightboxShow = document.querySelector(".lightbox");
       lightboxShowContent = document.querySelector(".lightbox-content");
       h2 = document.createElement("h2");
-      photo1 = e.currentTarget.cloneNode(true);
-      lightboxShow.style.display = "flex";
-      lightboxShow.style.justifyContent = 'center';
-      lightboxShow.style.alignItems = 'center';
-      lightboxShowContent.style.display = "flex";
-      lightboxShowContent.style.flexDirection = 'column-reverse';
-      lightboxShowContent.style.justifyContent = 'center';
-      lightboxShowContent.style.alignItems = 'center';
+      photo1 = e.path[0].cloneNode(true);
+      lightboxShow.setAttribute('style', 'display: flex; justify-content: center; align-items: center;')
+      lightboxShowContent.setAttribute('style', 'display: flex; justify-content: center; align-items: center; flex-direction: column-reverse;')
       photo1.setAttribute("class", "image-lightbox");
       photo1Index = arrayM2.indexOf(photo1.id);
       h2.textContent = arrayM2[photo1Index];
-      lightboxShowContent.appendChild(photo1);
-      lightboxShowContent.appendChild(h2);
+      lightboxShowContent.append(photo1, h2);
     }
     
     // //evenement pour ouvrir la lightbox au click sur chaque image dans la gallerie du photographe
@@ -131,7 +117,7 @@
       const imgDelete = document.querySelector(".image-lightbox");
       lightboxShow.style.display = "none";
       lightboxShowContent.removeChild(h2);
-      lightboxShowContent.removeChild(photo1)
+      lightboxShowContent.removeChild(photo1);
     }
 
     //evenement pour fermer la lightbox (lié à la fonction qu'on vient de créer)
@@ -139,26 +125,25 @@
     closelightbox.addEventListener("click", closeLightbox);
 
     //EventListener permettant d'effectuer des actions au clique ou à l'aide du clavier
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener("keydown", (event) => {
       checkLightboxKeyboard(event);
     });
 
     //Function pour permettre la navigation avec le clavier au niveau de la lightbox
     function checkLightboxKeyboard(event) {
+
+      //Touche enter pour l'ouverture de la lightbox
+      if (event.keyCode === 13) {
+        openLightbox(event)
+      }
       //Touches 'D', '6' (pad num.), '►' permettent de faire défiller les publications suivantes
       if (
-        event.keyCode === 68 ||
-        event.keyCode === 102 ||
-        event.keyCode === 39
-      ) {
+        event.keyCode === 68 || event.keyCode === 102 || event.keyCode === 39) {
         switchNext();
       }
       //Touches 'Q', '4' (pad num.), '◄' permettent de faire défiller les publications précédentes
       if (
-        event.keyCode === 81 ||
-        event.keyCode === 100 ||
-        event.keyCode === 37
-      ) {
+        event.keyCode === 81 || event.keyCode === 100 || event.keyCode === 37) {
         switchPrevious();
       }
       //La touche 'Échap' permet de fermer la lightbox

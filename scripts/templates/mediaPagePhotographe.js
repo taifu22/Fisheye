@@ -20,16 +20,17 @@ class MediaPagePhotographe {
 		let mediatri = [];
 		let photo = null;
 		this.arrayImages.map((el) => {
-			photo = document.createElement("div");
+			photo = document.createElement("article");
 			photo.setAttribute("class", "card-photo");
 			photo.setAttribute("id", `${this.arrayDate[index]}`);
+			photo.setAttribute('aria-label', 'photo photographer')
 			photo.innerHTML = `<img src="assets/images/${this.array[0].name}/${el}" class="images-photographers lightbox-activate"
-                         style="cursor:pointer;" id="${this.arrayTitles[index]}" tabindex="0" >
+                         style="cursor:pointer;" id="${this.arrayTitles[index]}" tabindex="0">
                          <div class="p-heart">
                          <p>${this.arrayTitles[index]}</p>
                          <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
                          <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button" tabindex="0"></i>
+                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button"></i>
                          </div>
                          </div>`;
 			this.photosMedias.appendChild(photo);
@@ -41,17 +42,18 @@ class MediaPagePhotographe {
 
 		//on map notre array avec les videos et on créé pour chaque élément une balise video, pour l'afficher dans le navigateur
 		this.arrayVideos.map((el) => {
-			const video = document.createElement("div");
+			const video = document.createElement("article");
 			video.setAttribute("id", `${this.arrayDate[index]}`);
 			video.setAttribute("class", "card-photo");
+			video.setAttribute('aria-label', 'video photographer')
 			video.innerHTML = `<video style="cursor:pointer;" class="images-photographers lightbox-activate" controls id="${this.arrayTitles[index]}"> 
-                   <source src="assets/images/${this.array[0].name}/${el}" type="video/mp4">
+                   <source src="assets/images/${this.array[0].name}/${el}" type="video/mp4" tabindex="0">
                    </video>
                    <div class="p-heart">
                    <p>${this.arrayTitles[index]}</p>
                    <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
                    <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button"></i>
+                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button" tabindex="0"></i>
                    </div>
                    </div>`;
 			video.setAttribute("class", "card-photo");
