@@ -243,7 +243,7 @@ h1 {
   height: 700px;
   width: 1300px;
 }
-.lightbox .lightbox-content .image-lightbox {
+.lightbox .lightbox-content img {
   max-width: 800px;
   height: 500px;
   margin-top: 40px;

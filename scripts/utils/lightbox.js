@@ -1,28 +1,78 @@
-class Lightbox {
-  constructor(arrayTitles, array) {
-    this.arrayTitles = arrayTitles;
-    this.array = array;
-  }
+//  class Lightbox {
+//    constructor(arrayTitles, arrayR){
+//      this.arrayTitles = arrayTitles;
+//      this.arrayR = arrayR
+//    }
 
-  getLightbox(arrayR) {
-    //fonction pour retrouver la value du select par rapport au tri pour afficher nos medias dans la lightbox
-    //let arrayR = this.arrayMedias;
-    let arrayM = []
-    arrayR.forEach(btn => {
-      arrayM.push(btn.firstElementChild)
-    })
-    let arrayM2 = [];
-    arrayM.forEach((btn) => {
-      arrayM2.push(btn.alt);
+  function getLightbox(mediatri, mediatriDate, mediatriPopularite, mediatriTitle) {
+    
+    //on récupere et on stocke dans check la value du select par rapport au tri pour afficher nos medias dans la lightbox
+    let check;
+    document.getElementById('filter-select').addEventListener('change', function() {
+      check = this.value
+      console.log(check);
     });
 
-    //function pour afficher la lightbox
-    let photo1;
+
+    //variables à utiliser dans la condition qui me triera ma lightbox selon le tableau associé à la value du select 
+    let arrayM2;
+    let arrayM
+    let photo1 = null;
     let photo1Index = null;
-    let h2 = document.createElement("h2");
-    const lightboxShow = document.querySelector(".lightbox");
-    const lightboxShowContent = document.querySelector(".lightbox-content")
-    function openLightbox(e) {
+    let lightboxShow = null;
+    let lightboxShowContent = null;
+    let h2 = null
+
+    //fonction pour ouvrir la lightbox
+    function openLightbox (e){
+      
+      //conditions pour utiliser le bon tableau dans la fonction selon le tri et du coup la value du select
+      if (check === 'date') {
+        console.log('ifdate');
+        arrayM = []
+        mediatriDate.forEach(btn => {
+          arrayM.push(btn.firstElementChild)
+        })
+        arrayM2 = [];
+        arrayM.forEach((btn) => {
+          arrayM2.push(btn.id);
+        });
+       } else if (check === 'popularite') {
+        console.log('ifpopularite');
+        arrayM = []
+        mediatriPopularite.forEach(btn => {
+          arrayM.push(btn.firstElementChild)
+        })
+        arrayM2 = [];
+        arrayM.forEach((btn) => {
+          arrayM2.push(btn.id);
+        });
+       } else if (check === 'titre') {
+        console.log('iftitle');
+        arrayM = []
+        mediatriTitle.forEach(btn => {
+          arrayM.push(btn.firstElementChild)
+        })
+        arrayM2 = [];
+        arrayM.forEach((btn) => {
+          arrayM2.push(btn.id);
+        });
+       } else {
+        console.log('ifnormal');
+        arrayM = []
+        mediatri.forEach(btn => {
+          arrayM.push(btn.firstElementChild)
+        })
+        arrayM2 = [];
+        arrayM.forEach((btn) => {
+          arrayM2.push(btn.id);
+       })
+       }
+      
+      //affichage de la lightbox selon le tableau choisi avec la condition juste en haut 
+      lightboxShow = document.querySelector(".lightbox");
+      lightboxShowContent = document.querySelector(".lightbox-content");
+      h2 = document.createElement("h2");
       photo1 = e.currentTarget.cloneNode(true);
       lightboxShow.style.display = "flex";
       lightboxShow.style.justifyContent = 'center';
@@ -32,30 +82,29 @@ class Lightbox {
       lightboxShowContent.style.justifyContent = 'center';
       lightboxShowContent.style.alignItems = 'center';
       photo1.setAttribute("class", "image-lightbox");
-      photo1Index = arrayM2.indexOf(photo1.alt);
+      photo1Index = arrayM2.indexOf(photo1.id);
       h2.textContent = arrayM2[photo1Index];
-      lightboxShowContent.append(photo1, h2);
-      console.log(arrayM);
+      lightboxShowContent.appendChild(photo1);
+      lightboxShowContent.appendChild(h2);
     }
-
-    //événement pour afficher la lightbox
+    
+    // //evenement pour ouvrir la lightbox au click sur chaque image dans la gallerie du photographe
     const lightbox = document.querySelectorAll(".lightbox-activate");
     lightbox.forEach((btn) => btn.addEventListener("click", openLightbox));
 
-
-    //fonction pour passer à la photo suivante
+    //fonctioin pour changer les photo coté right
     function switchNext() {
       if (photo1Index === arrayM.length - 1) {
         photo1Index = 0;
         photo1.remove();
-        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
         h2.textContent = arrayM2[photo1Index];
         lightboxShowContent.append(photo1, h2);
       } else {
         photo1Index += 1;
         photo1.remove();
-        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
         h2.textContent = arrayM2[photo1Index];
         lightboxShowContent.append(photo1, h2);
@@ -66,19 +115,19 @@ class Lightbox {
     const lightboxRight = document.querySelector(".fa-chevron-right");
     lightboxRight.addEventListener("click", switchNext);
 
-    //fonction pour passer à la photo precedente
+    //fonctioin pour changer les photo coté left
     function switchPrevious() {
       if (photo1Index === 0) {
         photo1Index = arrayM.length - 1;
         photo1.remove()
-        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
         h2.textContent = arrayM2[photo1Index];
         lightboxShowContent.append(photo1, h2);
       } else {
         photo1Index -= 1;
         photo1.remove()
-        photo1 = arrayM[photo1Index].cloneNode(true);
+        photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
         h2.textContent = arrayM2[photo1Index];
         lightboxShowContent.append(photo1, h2);
@@ -93,9 +142,8 @@ class Lightbox {
     function closeLightbox() {
       const lightboxShow = document.querySelector(".lightbox");
       const imgDelete = document.querySelector(".image-lightbox");
-      imgDelete.remove()
-      console.log(imgDelete);
       lightboxShow.style.display = "none";
+      lightboxShowContent.removeChild(h2);
       lightboxShowContent.removeChild(photo1)
     }
 
@@ -132,4 +180,6 @@ class Lightbox {
       }
     }
   }
-}
+
+
+//}

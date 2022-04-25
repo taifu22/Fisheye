@@ -4,18 +4,24 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
   </head>
-  <body>
+  <body> 
     <header role="banner">
       <a href="/index.html">
         <img src="assets/images/logo.png" class="logo" />
       </a>
     </header>
     <main id="main-page-photographer">
-      <div class="photographer-header" aria-label="Page photographer Profil"></div>                 
-      <form class="filter-form" action="photographer-page.html" method="POST" >
+      <div class="photographer-header" aria-label="Page photographer Profil"></div>  
+      <!-- <ul>
+        <li class="date" >Date</li>
+        <li class="popularite">Popularité</li>
+        <li class="title" >Title</li>
+      </ul>                -->
+     <form class="filter-form" action="photographer-page.html" method="POST" >
         <label for="filter-select">Trier par</label>
         <select name="filter-select" id="filter-select">
             <option value="popularite">Popularité</option>
@@ -66,9 +72,10 @@
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/templates/headerPagePhotographe.js"></script>
     <script src="scripts/templates/mediaPagePhotographe.js"></script>
+    <script src="scripts/utils/lightbox.js"></script>
+    <script src="scripts/utils/test.js"></script>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
-    <script src="scripts/utils/lightbox.js"></script>
     <script src="https://kit.fontawesome.com/38fd004207.js" crossorigin="anonymous"></script>
   </body>
 </html>

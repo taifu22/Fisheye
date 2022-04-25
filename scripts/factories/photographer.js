@@ -17,6 +17,6 @@ function photographerFactory(data) {
         <p class="p-price">${price}Є / jour</p>`;
     return article;
   }
-
+ 
   return { getUserCardDOM };
 }

@@ -18,7 +18,7 @@ class AppPagePhotographer {
             if (el.id == url_slice) {
               return el;
             }
-          });
+          }); 
           array.push(result);
        
     //utilisation du tableau pour stocker les images du photographe lié à l'url-slice
