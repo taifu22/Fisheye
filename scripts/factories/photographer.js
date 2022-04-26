@@ -1,4 +1,4 @@
-//fonction factory pour l'affichage de la page d'accueil et de la page photographe
+//fonction factory pour l'affichage de la page d'accueil 
 
 function photographerFactory(data) {
   const { name, portrait, country, city, tagline, price, id } = data;

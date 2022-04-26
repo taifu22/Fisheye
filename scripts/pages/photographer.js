@@ -1,3 +1,4 @@
+//Class qui gère l'affichage de la page photographer
 class AppPagePhotographer {
     constructor() {
         this.apiPhoto = new PhotographerApi('data/photographers.json');
@@ -74,17 +75,11 @@ class AppPagePhotographer {
         arrayDate.push(date);
       }
     }); 
-//fusion du tableau des photo avec celui des videos pour l'affichage en lightbox
-let arrayMedias = arrayImages.concat(arrayVideos);
 
        const showcards = new HeaderPagePhotographe(photo, array, url_slice)
        const showcardsPhotographers = showcards.createHeader()
        const showMedias = new MediaPagePhotographe(arrayImages, arrayVideos, arrayLikes, arrayTitles, arrayIdMedias,arrayDate, array, url_slice)
        const showMediasPhotographe = showMedias.getPhotosMedias()
-       //const showLightbox = new Lightbox(arrayMedias, arrayTitles, array)
-       //const showLightboxPhotographer = showLightbox.getLightbox()
-       //const showFilter = new FilterForm(arrayDate)
-       //const showFilterPhotographer = showFilter.getFilterFromDate()
        
        return {showcardsPhotographers, showMediasPhotographe }
     }

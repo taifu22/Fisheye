@@ -1,3 +1,4 @@
+//class qui gère l'affichage du header de la page photographer avec les info du photographe
 class HeaderPagePhotographe {
     constructor(data, array, url_slice){
         this.data = data.photographers

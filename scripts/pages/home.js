@@ -1,3 +1,4 @@
+//class qui gére l'affichage de la page d'accueil grace au fichier photographer.js dans le dossier factories
 class AppPageHome {
     constructor() {
         this.photographersSection = document.querySelector('.photographer_section')

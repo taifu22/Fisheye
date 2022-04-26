@@ -1,3 +1,4 @@
+//class qui gère les medias de la page photographer, du coup la gallerie avec les photo/videos, les likes, et le déclanchement de la Lightbox
 class MediaPagePhotographe {
 	constructor(
 		arrayImages, arrayVideos, arrayLikes, arrayTitles, arrayIdMedias, arrayDate, array, url_slice) {
@@ -13,7 +14,9 @@ class MediaPagePhotographe {
 	}
 
 	getPhotosMedias() {
+
 		//on map notre array avec les photo et on créé pour chaque élément une balise img, pour l'afficher dans le navigateur
+		//ces balises img ensuite on les stocke dans le array mediatri qu'on utilisera pour trier et afficher les images au bon ordre dans la lightbox
 		let index = 0;
 		let like = 0;
 		let id = 0;
@@ -41,6 +44,7 @@ class MediaPagePhotographe {
 		});
 
 		//on map notre array avec les videos et on créé pour chaque élément une balise video, pour l'afficher dans le navigateur
+		//ces balises video ensuite on les stocke dans le array mediatri qu'on utilisera pour trier et afficher les images au bon ordre dans la lightbox
 		this.arrayVideos.map((el) => {
 			const video = document.createElement("article");
 			video.setAttribute("id", `${this.arrayDate[index]}`);
@@ -61,17 +65,18 @@ class MediaPagePhotographe {
 			mediatri.push(video);
 		});
 
-		//je fait 4 clone de mon tableau mediatrie pour pouvoir l'utiliser dans mes 3 conditions au niveau des tries
+		//je fait 3 clone de mon tableau mediatri pour pouvoir l'utiliser dans mes 3 conditions au niveau des tries
 		let mediatriDate = [...mediatri];
 		let mediatriPopularite = [...mediatri];
 		let mediatriTitle = [...mediatri];
 	
 		//evenement pour trier les medias via la date, la popularite et le titre (ordre alphabetique)
 		const formFilter = document.querySelector(".filter-form");
-		console.log(formFilter.lastElementChild.value);
 		formFilter.addEventListener("change", changeFilter);
 
 		const photosMedias = this.photosMedias
+		
+		//fonction avec les 3 conditions de tri
 	    function changeFilter(e) {
 
 			if (e.target.value === "date") {
@@ -103,6 +108,7 @@ class MediaPagePhotographe {
 			}
 		}
         
+		//on instancie un objet de la class Lightbox, et on lui envoie nos 4 tableau, pour l'ordre d'affichage de l'images selon le tri
 		let triLightbox = new Lightbox(mediatri, mediatriDate, mediatriPopularite, mediatriTitle);
 		triLightbox.getLightbox()
 		
@@ -123,25 +129,24 @@ class MediaPagePhotographe {
 		let numero = 0;
 		let totale = 0;
 		let photo1Index = null;
-		let fasHeart = document.querySelectorAll(".fas");
+		  //ici on récupère tous les coeur pour pouvoir changer la class selon le like plus ou moins
+		  let fasHeart = document.querySelectorAll(".fas"); 
+		  //ici je stocke dans un tableau le nombre de likes de chaque photo, et l'id de chaque photo pour faire correspondance dan sla condition si dessous
+		  let arrayLikeAndIdMedia = []
+		  arrayLikeAndIdMedia.push(arrayLikes1);
+		  arrayLikeAndIdMedia.push(this.arrayIdMedias)
 
 		function clickLike(e) {
+			
 			let plike = document.querySelectorAll(".p-like");
 			let plikeTotaleLikes = document.querySelector(".plike-totale");
 			let currentImage = e.currentTarget.cloneNode(true);
-			let currentIndex = currentImage.querySelector("p").textContent;
-			photo1Index = arrayLikes1.indexOf(parseInt(currentIndex));
-
+			photo1Index = arrayLikeAndIdMedia[1].indexOf(parseInt(currentImage.id));
 			plike.forEach((btn) => {
 				let numeroid = btn.id;
-				if (
-					numeroid === currentImage.id &&
-					btn.textContent == arrayLikes1[photo1Index]
-				) {
+				if (numeroid === currentImage.id && parseInt(btn.textContent) === parseInt(arrayLikeAndIdMedia[0][photo1Index])) {
 					numero = parseInt(btn.textContent);
-					totale = parseInt(
-						document.querySelector(".plike-totale").textContent
-					);
+					totale = parseInt(document.querySelector(".plike-totale").textContent);
 					btn.innerHTML = numero + 1;
 					plikeTotaleLikes.innerHTML = totale + 1;
 					fasHeart.forEach((btn) => {
@@ -149,14 +154,9 @@ class MediaPagePhotographe {
 							btn.classList.add("fas-click");
 						}
 					});
-				} else if (
-					numeroid === currentImage.id &&
-					btn.textContent != arrayLikes1[photo1Index]
-				) {
+				} else if (numeroid === currentImage.id && btn.textContent != parseInt(arrayLikeAndIdMedia[0][photo1Index])) {
 					numero = parseInt(btn.textContent);
-					totale = parseInt(
-						document.querySelector(".plike-totale").textContent
-					);
+					totale = parseInt(document.querySelector(".plike-totale").textContent);
 					btn.innerHTML = numero - 1;
 					plikeTotaleLikes.innerHTML = totale - 1;
 					fasHeart.forEach((btn) => {

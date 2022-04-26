@@ -12,7 +12,6 @@ function closeModal() {
 const btnValidate = document.getElementById('validate-form')
 
 // constantes des erreurs au niveau des inputs
-//const error = document.querySelector(".error");
 const errorPrenom = document.querySelector('.prenom');
 const errorNom = document.querySelector('.nom');
 const errorEmail = document.querySelector('.email');
@@ -94,6 +93,9 @@ function checkPrenom() {
        const isFormValid = () => checkPrenom() && checkNom() && checkEmail() && checkTextArea();
        if (isFormValid()) {
          closeModal();
-         console.log(`Prenom : ${arrayForm[0]}, Nom : ${arrayForm[1]}, Email : ${arrayForm[2]}, Message : ${arrayForm[3]}`);
+         console.log(`Prenom : ${arrayForm[0]}`);
+         console.log(`Nom : ${arrayForm[1]}`);
+         console.log(`Email : ${arrayForm[2]}`);
+         console.log(`Message : ${arrayForm[3]}`);
        }
     })

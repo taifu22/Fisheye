@@ -1,3 +1,4 @@
+ //class qui gère l'affichage de la lightbox
  class Lightbox {
    constructor(mediatri, mediatriDate, mediatriPopularite, mediatriTitle){
      this.mediatri = mediatri;
@@ -61,7 +62,7 @@
       lightboxShowContent.append(photo1, h2);
     }
     
-    // //evenement pour ouvrir la lightbox au click sur chaque image dans la gallerie du photographe
+    //evenement pour ouvrir la lightbox au click sur chaque image dans la gallerie du photographe
     const lightbox = document.querySelectorAll(".lightbox-activate");
     lightbox.forEach((btn) => btn.addEventListener("click", openLightbox));
 

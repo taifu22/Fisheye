@@ -1,3 +1,5 @@
+//Class pour l'appell à l'API donc la récupération des data du cfichier JSON
+
 class PhotographerApi {
     constructor(url){
         this._url = url
