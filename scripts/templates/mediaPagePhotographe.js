@@ -80,25 +80,22 @@ class MediaPagePhotographe {
 	    function changeFilter(e) {
 
 			if (e.target.value === "date") {
-
 				mediatriDate.sort((a, b) => {
 					return a.id > b.id ? 1 : -1;
 				});
 				mediatriDate.forEach((btn) => {
 					return photosMedias.appendChild(btn)
 				});
-
-			} else if (e.target.value === "popularite") {
-
+			} 
+			else if (e.target.value === "popularite") {
 				mediatriPopularite.sort((a, b) => {
 					return parseInt(a.lastElementChild.lastElementChild.firstElementChild.textContent) < parseInt(b.lastElementChild.lastElementChild.firstElementChild.textContent) ? 1 : -1;
 				});
 				mediatriPopularite.forEach((btn) => {
 					return photosMedias.appendChild(btn)
 				});
-
-			} else if (e.target.value === "titre") {
-
+			} 
+			else if (e.target.value === "titre") {
 				mediatriTitle.sort((a, b) => {
 					return a.lastElementChild.firstElementChild.textContent > b.lastElementChild.firstElementChild.textContent ? 1 : -1;
 				})
@@ -106,6 +103,7 @@ class MediaPagePhotographe {
 					return photosMedias.appendChild(btn)
 				});
 			}
+		
 		}
         
 		//on instancie un objet de la class Lightbox, et on lui envoie nos 4 tableau, pour l'ordre d'affichage de l'images selon le tri
