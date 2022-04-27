@@ -15,7 +15,7 @@
       </a>
     </header>
     <main id="main-page-photographer">
-      <div class="photographer-header" aria-label="Page photographer Profil"></div>  
+      <section class="photographer-header" aria-label="Page photographer Profil"></section>  
       <!-- <ul>
         <li class="date" >Date</li>
         <li class="popularite">Popularité</li>
@@ -33,26 +33,27 @@
       </section>
     </main> 
     <div id="contact_modal" role="dialog" aria-label="contact me form" aria-labelledby="form-title"
-    aria-hidden="true">
-			<div class="modal">
+    aria-modal="true">
+			<div class="modal" role="dialog" aria-describedby="modalTitle">
 				<header aria-label="contact form header"> 
           <h2 class="h2-modal-contact">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Close form" role="button" aria-hidden="true"/>
+          <img src="assets/icons/close.svg" onclick="closeModal()" class="close-modal" alt="Close form" role="button" 
+          tabindex="0" aria-hidden="true"/>
         </header>
 				<form id="validate-form" action="photographer-page.html" method="POST">
-					<div aria-label="Contact form">
-						<label>Prénom</label>
+					<div aria-label="Contact form" tabindex="-1">
+						<label for="firstname" tabindex="0">Prénom</label>
             <div class="error prenom">Veuillez entrer 2 caractères ou plus pour le champ du prénom</div>
 						<input type="text" id="first" name="first" minlength="2"/>
-            <label>Nom</label>
+            <label for="lastname" tabindex="0">Nom</label>
             <div class="error nom">Veuillez entrer 2 caractères ou plus pour le champ du nom</div>
 						<input type="text" id="last" name="last" minlength="2"/>
-            <label>Email</label>
+            <label for="email" tabindex="0">Email</label>
             <div class="email error">Veuillez entrer une adresse mail valide</div>
 						<input type="email" id="email" name="email"/>
-            <label>Votre message</label>
+            <label for="message" tabindex="0">Votre message</label>
             <div class="error textarea">Veuillez entrer au moins 20 caractères, et jusqu'à 200, pour le champ du message</div>
-						<input type="text" class="textArea" id="textArea" name="textArea">
+						<textarea class="textArea" id="textArea" name="textArea"></textarea>
 					</div>
           <button aria-label="Send form" class="contact_button">Envoyer</button>
 				</form>
@@ -66,13 +67,14 @@
         <i class="fa-solid fa-chevron-right" role="button"></i>
       </div>
     </div>
-    <div class="like-fixed">
+    <div class="like-fixed" tabindex="0">
     </div>
     <script src="scripts/api/Api.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/templates/headerPagePhotographe.js"></script>
     <script src="scripts/templates/mediaPagePhotographe.js"></script>
     <script src="scripts/utils/lightbox.js"></script>
+    <script src="scripts/utils/like.js"></script>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script src="https://kit.fontawesome.com/38fd004207.js" crossorigin="anonymous"></script>

@@ -2,12 +2,22 @@
 function displayModal() {
   const modal = document.getElementById("contact_modal");
 modal.style.display = "block";
+modal.setAttribute('aria-hidden', 'false');
 }
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
+  modal.setAttribute('aria-hidden', 'true');
 }
+
+//fermeture de la modale via le clavier an faisant enter sur la X
+const closeModalVar = document.querySelector(".close-modal");
+closeModalVar.addEventListener('keydown', (event)=> {
+  if (event.keyCode === 13) {
+    closeModal();
+  }
+})
 
 const btnValidate = document.getElementById('validate-form')
 

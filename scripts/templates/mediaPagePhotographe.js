@@ -33,7 +33,7 @@ class MediaPagePhotographe {
                          <p>${this.arrayTitles[index]}</p>
                          <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
                          <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button"></i>
+                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button" tabindex="0"></i>
                          </div>
                          </div>`;
 			this.photosMedias.appendChild(photo);
@@ -55,9 +55,9 @@ class MediaPagePhotographe {
                    </video>
                    <div class="p-heart">
                    <p>${this.arrayTitles[index]}</p>
-                   <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
+                   <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart" tabindex="0"							>
                    <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button" tabindex="0"></i>
+                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button"></i>
                    </div>
                    </div>`;
 			video.setAttribute("class", "card-photo");
@@ -110,64 +110,9 @@ class MediaPagePhotographe {
 		let triLightbox = new Lightbox(mediatri, mediatriDate, mediatriPopularite, mediatriTitle);
 		triLightbox.getLightbox()
 		
-		//calcule totale des likes dans le tableau arrayLikes (result contiendra notre totale)
-		let arrayLikes1 = this.arrayLikes;
-		let result = 0;
-		for (let i = 0; i < arrayLikes1.length; i++) {
-			let numero = arrayLikes1[i];
-			result += numero;
-		}
-
-		//affichage des likes totales des medias dans chaque page photographe
-		const likeTotale = document.querySelector(".like-fixed");
-		likeTotale.innerHTML = `<div><p class="plike-totale">${result}</p><i class="fa-solid fa-heart" aria-label='likes'></i></div>
-                             <p class="plike-price">${this.array[0].price}Є  / jour</p>`;
-
-		//fonction pour ajouter et enlever le like pour chaque media
-		let numero = 0;
-		let totale = 0;
-		let photo1Index = null;
-		  //ici on récupère tous les coeur pour pouvoir changer la class selon le like plus ou moins
-		  let fasHeart = document.querySelectorAll(".fas"); 
-		  //ici je stocke dans un tableau le nombre de likes de chaque photo, et l'id de chaque photo pour faire correspondance dan sla condition si dessous
-		  let arrayLikeAndIdMedia = []
-		  arrayLikeAndIdMedia.push(arrayLikes1);
-		  arrayLikeAndIdMedia.push(this.arrayIdMedias)
-
-		function clickLike(e) {
-			
-			let plike = document.querySelectorAll(".p-like");
-			let plikeTotaleLikes = document.querySelector(".plike-totale");
-			let currentImage = e.currentTarget.cloneNode(true);
-			photo1Index = arrayLikeAndIdMedia[1].indexOf(parseInt(currentImage.id));
-			plike.forEach((btn) => {
-				let numeroid = btn.id;
-				if (numeroid === currentImage.id && parseInt(btn.textContent) === parseInt(arrayLikeAndIdMedia[0][photo1Index])) {
-					numero = parseInt(btn.textContent);
-					totale = parseInt(document.querySelector(".plike-totale").textContent);
-					btn.innerHTML = numero + 1;
-					plikeTotaleLikes.innerHTML = totale + 1;
-					fasHeart.forEach((btn) => {
-						if (btn.id === numeroid) {
-							btn.classList.add("fas-click");
-						}
-					});
-				} else if (numeroid === currentImage.id && btn.textContent != parseInt(arrayLikeAndIdMedia[0][photo1Index])) {
-					numero = parseInt(btn.textContent);
-					totale = parseInt(document.querySelector(".plike-totale").textContent);
-					btn.innerHTML = numero - 1;
-					plikeTotaleLikes.innerHTML = totale - 1;
-					fasHeart.forEach((btn) => {
-						if (btn.id === numeroid) {
-							btn.classList.remove("fas-click");
-						}
-					});
-				}
-			});
-		}
-
-		//evenement pour déclancher la fonction créé en haut concernant les likes de chaque media
-		const eventLikes = document.querySelectorAll(".heart");
-		eventLikes.forEach((btn) => btn.addEventListener("click", clickLike));
+		//on instancie un nouvel objet de la classe Likes pour ajouter et enlever les likes sur chaque media, et voir le totale
+		let likes = new Likes(this.arrayLikes, this.arrayIdMedias, this.array);
+		likes.getLikes()
+		
 	}
 }

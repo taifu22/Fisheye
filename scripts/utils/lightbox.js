@@ -126,9 +126,9 @@
     closelightbox.addEventListener("click", closeLightbox);
 
     //EventListener permettant d'effectuer des actions au clique ou à l'aide du clavier
-    document.addEventListener("keydown", (event) => {
+    lightbox.forEach((btn) => btn.addEventListener("keydown", (event) => {
       checkLightboxKeyboard(event);
-    });
+    }));
 
     //Function pour permettre la navigation avec le clavier au niveau de la lightbox
     function checkLightboxKeyboard(event) {
@@ -154,3 +154,4 @@
     }
   }
 }
+ 
