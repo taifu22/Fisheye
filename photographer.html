@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -11,16 +11,12 @@
   <body> 
     <header role="banner">
       <a href="/index.html">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="logo"/>
       </a>
     </header>
     <main id="main-page-photographer">
       <section class="photographer-header" aria-label="Page photographer Profil"></section>  
-      <!-- <ul>
-        <li class="date" >Date</li>
-        <li class="popularite">Popularité</li>
-        <li class="title" >Title</li>
-      </ul>                -->
+      <!--SYSTEME DE FILTRE DE LA GALLERIE DES MEDIAS--> 
      <form class="filter-form" action="photographer-page.html" method="POST">
         <label for="filter-select">Trier par</label>
         <select name="filter-select" id="filter-select">
@@ -32,6 +28,7 @@
       <section class="photos-medias" aria-label='photographer works'>
       </section>
     </main> 
+    <!--MODALE FORMULAIRE DE COTACT--> 
     <div id="contact_modal" role="dialog" aria-label="contact me form" aria-labelledby="form-title"
     aria-modal="true">
 			<div class="modal" role="dialog" aria-describedby="modalTitle">
@@ -42,23 +39,23 @@
         </header>
 				<form id="validate-form" action="photographer-page.html" method="POST">
 					<div aria-label="Contact form" tabindex="-1">
-						<label for="firstname" tabindex="0">Prénom</label>
+						<label for="first" tabindex="0">Prénom</label>
             <div class="error prenom">Veuillez entrer 2 caractères ou plus pour le champ du prénom</div>
 						<input type="text" id="first" name="first" minlength="2"/>
-            <label for="lastname" tabindex="0">Nom</label>
+            <label for="last" tabindex="0">Nom</label>
             <div class="error nom">Veuillez entrer 2 caractères ou plus pour le champ du nom</div>
 						<input type="text" id="last" name="last" minlength="2"/>
             <label for="email" tabindex="0">Email</label>
             <div class="email error">Veuillez entrer une adresse mail valide</div>
 						<input type="email" id="email" name="email"/>
-            <label for="message" tabindex="0">Votre message</label>
+            <label for="textArea" tabindex="0">Votre message</label>
             <div class="error textarea">Veuillez entrer au moins 20 caractères, et jusqu'à 200, pour le champ du message</div>
 						<textarea class="textArea" id="textArea" name="textArea"></textarea>
 					</div>
           <button aria-label="Send form" class="contact_button">Envoyer</button>
 				</form>
 			</div>
-      
+    <!--SYSTEME DE GESTION DE LA LIGHTBOX-->   
 		</div>
     <div class="lightbox" aria-hidden="true" role="dialog">
       <div class="lightbox-content">
@@ -66,16 +63,21 @@
         <i class="fa-solid fa-chevron-left" role="button"></i>
         <i class="fa-solid fa-chevron-right" role="button"></i>
       </div>
+    <!--SYSTEME DE GESTION DES LIKES-->   
     </div>
     <div class="like-fixed" tabindex="0">
     </div>
+    <!--RECUPERATION DES DONNEES DU FICHIER JSON--> 
     <script src="scripts/api/Api.js"></script>
+    <!--SYSTEME D'AFFICHAGE DE LA PAGE PHOTOGRAPHE--> 
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/templates/headerPagePhotographe.js"></script>
     <script src="scripts/templates/mediaPagePhotographe.js"></script>
+    <!--SYSTEME D'AFFICHAGE DE LA LIGHTBOX--> 
     <script src="scripts/utils/lightbox.js"></script>
+    <!--AFFICHAGE DES LIKES--> 
     <script src="scripts/utils/like.js"></script>
-    <script src="scripts/factories/photographer.js"></script>
+    <!--GESTION DU FORMULAIRE DU CONTACTE, AVEC UVERTURE ET FERMETURE DE LA MODALE --> 
     <script src="scripts/utils/contactForm.js"></script>
     <script src="https://kit.fontawesome.com/38fd004207.js" crossorigin="anonymous"></script>
   </body>
