@@ -14,7 +14,7 @@ class AppPageHome {
             const userCardDOM = photographerModel.getUserCardDOM();
             this.photographersSection.appendChild(userCardDOM);
         });
-    };
+    }
  
 }
  

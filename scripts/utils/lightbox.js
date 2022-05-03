@@ -36,7 +36,7 @@
         arrayM.forEach((btn) => {
           arrayM2.push(btn.id);
         });
-      }
+      } 
 
       if (check === 'date') {
         checkCondition(mediatriDate)
