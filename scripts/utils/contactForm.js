@@ -32,18 +32,18 @@ const regExMail = /[a-zA-Z0-9-.-_]+[@]{1}[a-zA-Z0-9-.-_]+[.]{1}[a-z]{2,6}$/gm;
 const regexName = /^(?:[^\d\W][\-\s\']{0,1}){2,20}$/;
 const regexTextArea = /^(?:[^\d\W][\-\s\']{0,1}){20,200}$/;
 
-const arrayForm = []
+let arrayForm = []
 
 //function pour controler/tester le prenom dans le formulaire d'envoie
 function checkPrenom() {
   const prenom = document.querySelector('#first').value;
   arrayForm.push(prenom)
     const isPrenomValide = regexName.test(prenom);
-  
     if (isPrenomValide) {
       errorPrenom.classList.remove('error');
       errorPrenom.style.display = 'none';
     } else {
+      arrayForm = [];
       errorPrenom.classList.add('error');
       errorPrenom.style.display = 'block';
     }
@@ -60,6 +60,7 @@ function checkPrenom() {
       errorNom.classList.remove('error');
       errorNom.style.display = 'none';
     } else {
+      arrayForm = [];
       errorNom.classList.add('error');
       errorNom.style.display = 'block';
     }
@@ -75,13 +76,14 @@ function checkPrenom() {
      errorEmail.classList.remove('error');
      errorEmail.style.display = 'none'
     } else {
+      arrayForm = [];
      errorEmail.classList.add('error');
      errorEmail.style.display = 'block';
     }
     return isEmailValide;
   }
 
-  //function pour controler/tester le nom dans le formulaire d'envoie
+  //function pour controler/tester le message dans le formulaire d'envoie
   function checkTextArea() {
     const textArea = document.querySelector('#textArea').value;
     arrayForm.push(textArea)
@@ -91,6 +93,7 @@ function checkPrenom() {
       errorTextArea.classList.remove('error');
       errorTextArea.style.display = 'none'; 
     } else {
+      arrayForm = [];
       errorTextArea.classList.add('error');
       errorTextArea.style.display = 'block';
     }
@@ -103,6 +106,7 @@ function checkPrenom() {
        const isFormValid = () => checkPrenom() && checkNom() && checkEmail() && checkTextArea();
        if (isFormValid()) {
          closeModal();
+         console.log(arrayForm);
          console.log(`Prenom : ${arrayForm[0]}`);
          console.log(`Nom : ${arrayForm[1]}`);
          console.log(`Email : ${arrayForm[2]}`);

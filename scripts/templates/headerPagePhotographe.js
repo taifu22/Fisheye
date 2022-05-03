@@ -7,7 +7,7 @@ class HeaderPagePhotographe {
         this.headerPhotographe = document.querySelector('.photographer-header')
     }
 
-    createHeader(){ 
+    createHeader(){  
 
           const picturePhotographe = `assets/photographers/${this.array[0].portrait}`;
           const articlePhotographe = document.querySelector(".photographer-header");

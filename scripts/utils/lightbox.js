@@ -7,18 +7,18 @@
      this.mediatriTitle = mediatriTitle
    }
 
-  getLightbox() {
+  getLightbox() { 
     
     //on récupere et on stocke dans check la value du select par rapport au tri pour afficher nos medias dans la lightbox
     let check;
     document.getElementById('filter-select').addEventListener('change', function() {
       check = this.value
       console.log(check);
-    });
+    }); 
 
 
     //variables à utiliser dans la condition qui me triera la lightbox selon le tableau associé à la value du select, et la fonction pour ouvrir la lightbox
-    let arrayM2; let arrayM; let photo1 = null; let photo1Index = null; let lightboxShow = null; let lightboxShowContent = null; let h2 = null;
+    let arrayM2; let arrayM; let photo1 = null; let photo1Index = null; let lightboxShow = null; let lightboxShowContent = null; let pTitle = null;
     let mediatri = this.mediatriDate; let mediatriDate = this.mediatriDate; let mediatriPopularite = this.mediatriPopularite; let mediatriTitle = this.mediatriTitle
     
     //fonction pour ouvrir la lightbox
@@ -26,10 +26,12 @@
       
       //conditions pour utiliser le bon tableau dans la fonction selon le tri et du coup la value du select
       function checkCondition(arrayMediatri) {
+        //tableau avec chaque élément media img ou video de mon photographe
         arrayM = []
         arrayMediatri.forEach(btn => {
           arrayM.push(btn.firstElementChild)
         })
+        //tableau avec les title de chaque media
         arrayM2 = [];
         arrayM.forEach((btn) => {
           arrayM2.push(btn.id);
@@ -52,14 +54,14 @@
       //affichage de la lightbox selon le tableau choisi avec la condition juste en haut 
       lightboxShow = document.querySelector(".lightbox");
       lightboxShowContent = document.querySelector(".lightbox-content");
-      h2 = document.createElement("h2");
+      pTitle = document.querySelector(".p-title");
       photo1 = e.path[0].cloneNode(true);
       lightboxShow.setAttribute('style', 'display: flex; justify-content: center; align-items: center;')
-      lightboxShowContent.setAttribute('style', 'display: flex; justify-content: center; align-items: center; flex-direction: column-reverse;')
+      lightboxShowContent.setAttribute('style', 'display: flex; justify-content: center; align-items: center; flex-direction: column;')
       photo1.setAttribute("class", "image-lightbox");
       photo1Index = arrayM2.indexOf(photo1.id);
-      h2.textContent = arrayM2[photo1Index];
-      lightboxShowContent.append(photo1, h2);
+      pTitle.textContent = arrayM2[photo1Index];
+      lightboxShowContent.append(photo1,pTitle);
     }
     
     //evenement pour ouvrir la lightbox au click sur chaque image dans la gallerie du photographe
@@ -73,15 +75,15 @@
         photo1.remove();
         photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
-        h2.textContent = arrayM2[photo1Index];
-        lightboxShowContent.append(photo1, h2);
+        pTitle.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, pTitle);
       } else {
         photo1Index += 1;
         photo1.remove();
         photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
-        h2.textContent = arrayM2[photo1Index];
-        lightboxShowContent.append(photo1, h2);
+        pTitle.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, pTitle);
       }
     }
  
@@ -96,15 +98,15 @@
         photo1.remove()
         photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
-        h2.textContent = arrayM2[photo1Index];
-        lightboxShowContent.append(photo1, h2);
+        pTitle.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, pTitle);
       } else {
         photo1Index -= 1;
         photo1.remove()
         photo1 = arrayM[photo1Index].cloneNode(true)
         photo1.setAttribute("class", "image-lightbox");
-        h2.textContent = arrayM2[photo1Index];
-        lightboxShowContent.append(photo1, h2);
+        pTitle.textContent = arrayM2[photo1Index];
+        lightboxShowContent.append(photo1, pTitle);
       }
     }
         
@@ -117,7 +119,7 @@
       const lightboxShow = document.querySelector(".lightbox");
       const imgDelete = document.querySelector(".image-lightbox");
       lightboxShow.style.display = "none";
-      lightboxShowContent.removeChild(h2);
+      lightboxShowContent.removeChild(pTitle);
       lightboxShowContent.removeChild(photo1);
     }
 

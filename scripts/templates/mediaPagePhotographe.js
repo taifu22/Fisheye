@@ -28,7 +28,7 @@ class MediaPagePhotographe {
 			photo.setAttribute("id", `${this.arrayDate[index]}`);
 			photo.setAttribute('aria-label', 'photo photographer')
 			photo.innerHTML = `<img src="assets/images/${this.array[0].name}/${el}" class="images-photographers lightbox-activate"
-                         style="cursor:pointer;" id="${this.arrayTitles[index]}" tabindex="0">
+                         style="cursor:pointer;" id="${this.arrayTitles[index]}" alt="${this.arrayTitles[index]}" tabindex="0">
                          <div class="p-heart">
                          <p>${this.arrayTitles[index]}</p>
                          <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
@@ -92,7 +92,7 @@ class MediaPagePhotographe {
 					return parseInt(a.lastElementChild.lastElementChild.firstElementChild.textContent) < parseInt(b.lastElementChild.lastElementChild.firstElementChild.textContent) ? 1 : -1;
 				});
 				mediatriPopularite.forEach((btn) => {
-					return photosMedias.appendChild(btn)
+					return photosMedias.appendChild(btn) 
 				});
 			} 
 			else if (e.target.value === "titre") {
@@ -114,5 +114,5 @@ class MediaPagePhotographe {
 		let likes = new Likes(this.arrayLikes, this.arrayIdMedias, this.array);
 		likes.getLikes()
 		
-	}
+	} 
 }

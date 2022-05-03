@@ -4,7 +4,7 @@ class AppPagePhotographer {
         this.apiPhoto = new PhotographerApi('data/photographers.json');
     }
 
-    async getPagePhotographe(){ 
+    async getPagePhotographe(){  
 
     //recuperation des infos du photographe du fichier json
     const photo = await this.apiPhoto.getPhotographers()
@@ -21,6 +21,7 @@ class AppPagePhotographer {
             }
           }); 
           array.push(result);
+          
        
     //utilisation du tableau pour stocker les images du photographe lié à l'url-slice
     let arrayImages = [];

@@ -12,3 +12,4 @@ class PhotographerApi {
                      .catch(err => console.log('an error occurs', err))
     }
 }
+ 

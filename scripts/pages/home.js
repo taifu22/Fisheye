@@ -1,5 +1,5 @@
 //class qui gére l'affichage de la page d'accueil grace au fichier photographer.js dans le dossier factories
-class AppPageHome {
+class AppPageHome { 
     constructor() {
         this.photographersSection = document.querySelector('.photographer_section')
         this.apiPhoto = new PhotographerApi('data/photographers.json');
@@ -15,7 +15,7 @@ class AppPageHome {
             this.photographersSection.appendChild(userCardDOM);
         });
     };
-
+ 
 }
  
 const app = new AppPageHome();

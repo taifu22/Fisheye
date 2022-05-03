@@ -245,9 +245,10 @@ h1 {
   background-color: rgba(226, 226, 231, 0.9);
 }
 .lightbox .lightbox-content {
-  background-color: #db8876;
+  background-color: white;
   height: 700px;
   width: 1300px;
+  position: relative;
 }
 .lightbox .lightbox-content img {
   max-width: 800px;
@@ -264,34 +265,34 @@ h1 {
      object-fit: contain;
 }
 .lightbox .lightbox-content .fa-xmark {
-  margin-left: 1000px;
-  margin-bottom: 500px;
-  font-size: 100px;
-  color: #d3573c;
+  margin-left: 850px;
+  margin-bottom: 430px;
+  font-size: 48px;
+  color: #901C1C;
   position: fixed;
   cursor: pointer;
 }
 .lightbox .lightbox-content .fa-chevron-left {
-  margin-right: 1000px;
-  font-size: 100px;
-  color: #d3573c;
+  margin-right: 850px;
+  font-size: 48px;
+  color: #901C1C;
   position: fixed;
   cursor: pointer;
 }
 .lightbox .lightbox-content .fa-chevron-right {
-  margin-left: 1000px;
-  font-size: 100px;
-  color: #d3573c;
+  margin-left: 850px;
+  font-size: 48px;
+  color: #901C1C;
   position: fixed;
   cursor: pointer;
 }
-.lightbox .lightbox-content h2 {
-  text-align: center;
+.lightbox .lightbox-content p {
   margin-bottom: 0;
-  color: white;
-  top: 5px;
-  left: 40%;
-  font-size: 40px;
+  color: #901C1C;
+  position: absolute;
+  font-size: 24px;
+  bottom: 30px;
+  left: 21%;
 }
 
 .like-fixed {

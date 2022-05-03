@@ -9,11 +9,11 @@ class Likes {
         //calcule totale des likes dans le tableau arrayLikes (result contiendra notre totale)
 		let arrayLikes1 = this.arrayLikes;
 		let result = 0;
-		for (let i = 0; i < arrayLikes1.length; i++) {
+		for (let i = 0; i < arrayLikes1.length; i++) { 
 			let numero = arrayLikes1[i];
-			result += numero;
+			result += numero; 
 		}
-
+ 
         //affichage des likes totales des medias dans chaque page photographe
 		const likeTotale = document.querySelector(".like-fixed");
 		likeTotale.innerHTML = `<div><p class="plike-totale">${result}</p><i class="fa-solid fa-heart" aria-label='likes'></i></div>
@@ -32,6 +32,7 @@ class Likes {
 			let plike = document.querySelectorAll(".p-like");
 			let plikeTotaleLikes = document.querySelector(".plike-totale");
 			let currentImage = e.currentTarget.cloneNode(true);
+			console.log(currentImage);
 			photo1Index = arrayIdMedia.indexOf(parseInt(currentImage.id));
 			plike.forEach((btn) => {
 				let numeroid = btn.id;
