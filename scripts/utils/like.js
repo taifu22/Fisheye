@@ -16,7 +16,7 @@ class Likes {
  
         //affichage des likes totales des medias dans chaque page photographe
 		const likeTotale = document.querySelector(".like-fixed");
-		likeTotale.innerHTML = `<div><p class="plike-totale">${result}</p><i class="fa-solid fa-heart" aria-label='likes'></i></div>
+		likeTotale.innerHTML = `<div><p class="plike-totale">${result}</p><span class="fa-solid fa-heart" aria-label='likes'></span></div>
                              <p class="plike-price">${this.array[0].price}Є  / jour</p>`;
 
         //fonction pour ajouter et enlever le like pour chaque media

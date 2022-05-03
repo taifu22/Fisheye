@@ -6,7 +6,7 @@ class HeaderPagePhotographe {
         this.url_slice = url_slice
         this.headerPhotographe = document.querySelector('.photographer-header')
     }
-
+ 
     createHeader(){  
 
           const picturePhotographe = `assets/photographers/${this.array[0].portrait}`;

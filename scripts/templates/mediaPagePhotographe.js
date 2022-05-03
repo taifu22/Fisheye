@@ -33,7 +33,7 @@ class MediaPagePhotographe {
                          <p>${this.arrayTitles[index]}</p>
                          <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart">
                          <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                         <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button" tabindex="0"></i>
+                         <span id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button" tabindex="0"></span>
                          </div>
                          </div>`;
 			this.photosMedias.appendChild(photo);
@@ -57,7 +57,7 @@ class MediaPagePhotographe {
                    <p>${this.arrayTitles[index]}</p>
                    <div id="${this.arrayIdMedias[id]}" style="cursor:pointer;" class="heart" tabindex="0"							>
                    <p id="${this.arrayIdMedias[id]}" class="p-like">${this.arrayLikes[like]}</p>
-                   <i id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button"></i>
+                   <span id="${this.arrayIdMedias[id]}" class="fas fa-heart" role="button"></span>
                    </div>
                    </div>`;
 			video.setAttribute("class", "card-photo");
