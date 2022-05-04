@@ -16,7 +16,7 @@ const closeModalVar = document.querySelector(".close-modal");
 closeModalVar.addEventListener('keydown', (event)=> {
   if (event.keyCode === 13) {
     closeModal();
-  }
+  } 
 })
 
 const btnValidate = document.getElementById('validate-form')
@@ -28,7 +28,7 @@ const errorEmail = document.querySelector('.email');
 const errorTextArea = document.querySelector('.textarea');
 
 // Contantes regex
-const regExMail = /[a-zA-Z0-9-.-_]+[@]{1}[a-zA-Z0-9-.-_]+[.]{1}[a-z]{2,6}$/gm;
+const regExMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const regexName = /^(?:[^\d\W][\-\s\']{0,1}){2,20}$/;
 const regexTextArea = /^(?:[^\d\W][\-\s\']{0,1}){20,200}$/;
 

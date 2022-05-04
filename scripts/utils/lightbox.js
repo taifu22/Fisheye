@@ -48,13 +48,13 @@
         checkCondition(mediatriTitle)
       }
       else {
-        checkCondition(mediatri)
+        checkCondition(mediatri) 
        }
       
       //affichage de la lightbox selon le tableau choisi avec la condition juste en haut 
       lightboxShow = document.querySelector(".lightbox");
       lightboxShowContent = document.querySelector(".lightbox-content");
-      pTitle = document.querySelector(".p-title");
+      pTitle = document.createElement("p");
       photo1 = e.path[0].cloneNode(true);
       lightboxShow.setAttribute('style', 'display: flex; justify-content: center; align-items: center;')
       lightboxShowContent.setAttribute('style', 'display: flex; justify-content: center; align-items: center; flex-direction: column;')
