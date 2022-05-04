@@ -1,28 +1,26 @@
 //Class qui gère l'affichage de la page photographer
 class AppPagePhotographer {
-    constructor() {
-        this.apiPhoto = new PhotographerApi('data/photographers.json');
-    }
+  constructor() {
+    this.apiPhoto = new PhotographerApi("data/photographers.json");
+  }
 
-    async getPagePhotographe(){  
-
+  async getPagePhotographe() {
     //recuperation des infos du photographe du fichier json
-    const photo = await this.apiPhoto.getPhotographers()
+    const photo = await this.apiPhoto.getPhotographers();
 
     //recuperation de l'id du photographe dans la page photographers
-       const url_id = window.location.search;
-       const url_slice = url_id.slice(1);   
+    const url_id = window.location.search;
+    const url_slice = url_id.slice(1);
 
     //creation du tableau qui stocke les informations du photographe
     let array = [];
-        const result = photo.photographers.find((el) => {
-            if (el.id == url_slice) {
-              return el;
-            }
-          }); 
-          array.push(result);
-          
-       
+    const result = photo.photographers.find((el) => {
+      if (el.id == url_slice) {
+        return el;
+      }
+    });
+    array.push(result);
+
     //utilisation du tableau pour stocker les images du photographe lié à l'url-slice
     let arrayImages = [];
     photo.media.map((element) => {
@@ -57,7 +55,7 @@ class AppPagePhotographer {
         const likes = element.likes;
         arrayLikes.push(likes);
       }
-    }); 
+    });
 
     //utilisation du tableau pour stocker les id des medias du photographe lié à l'url-slice
     var arrayIdMedias = [];
@@ -66,7 +64,7 @@ class AppPagePhotographer {
         const id = element.id;
         arrayIdMedias.push(id);
       }
-    }); 
+    });
 
     //utilisation du tableau pour stocker les dates des medias du photographe lié à l'url-slice
     var arrayDate = [];
@@ -75,17 +73,25 @@ class AppPagePhotographer {
         const date = element.date;
         arrayDate.push(date);
       }
-    }); 
+    });
 
-       const showcards = new HeaderPagePhotographe(photo, array, url_slice)
-       const showcardsPhotographers = showcards.createHeader()
-       const showMedias = new MediaPagePhotographe(arrayImages, arrayVideos, arrayLikes, arrayTitles, arrayIdMedias,arrayDate, array, url_slice)
-       const showMediasPhotographe = showMedias.getPhotosMedias()
-       
-       return {showcardsPhotographers, showMediasPhotographe }
-    }
- 
+    const showcards = new HeaderPagePhotographe(photo, array, url_slice);
+    const showcardsPhotographers = showcards.createHeader();
+    const showMedias = new MediaPagePhotographe(
+      arrayImages,
+      arrayVideos,
+      arrayLikes,
+      arrayTitles,
+      arrayIdMedias,
+      arrayDate,
+      array,
+      url_slice
+    );
+    const showMediasPhotographe = showMedias.getPhotosMedias();
+
+    return { showcardsPhotographers, showMediasPhotographe };
+  }
 }
 
 const app = new AppPagePhotographer();
-app.getPagePhotographe(); 
+app.getPagePhotographe();
