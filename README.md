@@ -2,7 +2,7 @@
 ## Author 
 - Chahouat Taoufik
 ## General information
-- This repo contains all the source code to run the application of the memory-game.
+- This repo contains all the source code to run the application of the recipes.
 ## Prerequisites
 - A text editor like VSCode, Vim, IntelliJ...
 - Node.js < v.16
