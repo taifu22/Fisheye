@@ -10,6 +10,8 @@
 ## Project setup
 - Clone the repo on your computer.
 > git clone [https://github.com/taifu22/Fisheye.git]
+## Responsive design
+the customer remembered to have just the desktop and tablet version, no mobile version
 ### Deployment
 https://tranquil-bonbon-5af0f8.netlify.app
 ## Project start
